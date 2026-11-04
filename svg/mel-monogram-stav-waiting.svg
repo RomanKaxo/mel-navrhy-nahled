@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="mk mk-monogram t-dark" data-s="waiting" role="img" width="256" height="256" viewBox="0 0 32 32"><style>
+.mk{display:block;overflow:visible}
+.mk .i{fill:var(--mk-ink)}.mk .a{fill:var(--mk-acc)}.mk .hi{fill:var(--mk-soft)}.mk .de{fill:var(--mk-deep)}.mk .dd{fill:var(--mk-deeper)}
+.mk .p,.mk .g{transform-box:fill-box;transform-origin:center;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .35s,fill .35s}
+.mk[data-s=done] .g{animation:mk-bump .7s cubic-bezier(.2,.8,.2,1)}
+.mk[data-s=error] .g{animation:mk-shake .5s ease-in-out}
+@keyframes mk-bump{0%{transform:scale(.88)}45%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes mk-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5%)}45%{transform:translateX(4%)}70%{transform:translateX(-2%)}}
+.t-dark{--mk-ink:#FAF6FF;--mk-acc:#F21B68;--mk-soft:#FF92BA;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-light{--mk-ink:#171522;--mk-acc:#F21B68;--mk-soft:#B3124F;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-mono{--mk-ink:currentColor;--mk-acc:currentColor;--mk-soft:currentColor;--mk-deep:currentColor;--mk-deeper:currentColor}
+@media (prefers-reduced-motion:reduce){.mk *{animation:none!important;transition:none!important}}
+
+.mk-monogram .l,.mk-monogram .ov{fill:none;stroke-width:5.2;stroke-linejoin:bevel;stroke-linecap:butt}
+.mk-monogram.g16 .l,.mk-monogram.g16 .ov{stroke-width:2.7}
+.mk-monogram .l{stroke:var(--mk-ink);transition:stroke .35s,stroke-dasharray .5s}
+.mk-monogram .ov{stroke:var(--mk-acc);stroke-dasharray:0 100;opacity:0;transition:opacity .35s,stroke-dasharray .5s,stroke .35s}
+.mk-monogram[data-s=thinking] .ov{stroke:var(--mk-soft);opacity:1;stroke-dasharray:16 84;stroke-dashoffset:-14;animation:mo-tr 4.2s ease-in-out infinite alternate}
+.mk-monogram[data-s=working] .ov{opacity:1;stroke-dasharray:26 74;stroke-dashoffset:-37;animation:mo-tr 1.7s linear infinite}
+@keyframes mo-tr{from{stroke-dashoffset:26}to{stroke-dashoffset:-100}}
+.mk-monogram[data-s=waiting] .ov{opacity:1;stroke-dasharray:29 71;stroke-dashoffset:-36;animation:mo-wt 2.2s ease-in-out infinite}
+@keyframes mo-wt{0%,100%{opacity:1}50%{opacity:.3}}
+.mk-monogram[data-s=error] .l{stroke-dasharray:74 100}
+.mk-monogram[data-s=done] .l{stroke:var(--mk-acc)}</style><title>Mel, Monogram: Čeká na schválení</title><g class="g"><path class="p p1 l" pathLength="100" d="M5.5 27V15.5a5.25 5.25 0 0 1 10.5 0V27V15.5a5.25 5.25 0 0 1 10.5 0V27"/><path class="p2 ov" pathLength="100" d="M5.5 27V15.5a5.25 5.25 0 0 1 10.5 0V27V15.5a5.25 5.25 0 0 1 10.5 0V27"/></g></svg>

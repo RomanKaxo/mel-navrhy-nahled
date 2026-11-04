@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="mk mk-pohled t-dark" data-s="working" role="img" width="256" height="256" viewBox="0 0 32 32"><style>
+.mk{display:block;overflow:visible}
+.mk .i{fill:var(--mk-ink)}.mk .a{fill:var(--mk-acc)}.mk .hi{fill:var(--mk-soft)}.mk .de{fill:var(--mk-deep)}.mk .dd{fill:var(--mk-deeper)}
+.mk .p,.mk .g{transform-box:fill-box;transform-origin:center;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .35s,fill .35s}
+.mk[data-s=done] .g{animation:mk-bump .7s cubic-bezier(.2,.8,.2,1)}
+.mk[data-s=error] .g{animation:mk-shake .5s ease-in-out}
+@keyframes mk-bump{0%{transform:scale(.88)}45%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes mk-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5%)}45%{transform:translateX(4%)}70%{transform:translateX(-2%)}}
+.t-dark{--mk-ink:#FAF6FF;--mk-acc:#F21B68;--mk-soft:#FF92BA;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-light{--mk-ink:#171522;--mk-acc:#F21B68;--mk-soft:#B3124F;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-mono{--mk-ink:currentColor;--mk-acc:currentColor;--mk-soft:currentColor;--mk-deep:currentColor;--mk-deeper:currentColor}
+@media (prefers-reduced-motion:reduce){.mk *{animation:none!important;transition:none!important}}
+
+.mk-pohled[data-s=thinking] .p{fill:var(--mk-soft);transform:translate(20%,-5%) scale(.9);animation:po-look 3.4s ease-in-out infinite}
+@keyframes po-look{0%,100%{transform:translate(20%,-5%) scale(.9)}45%,55%{transform:translate(-20%,-5%) scale(.9)}}
+.mk-pohled[data-s=working] .p{fill:var(--mk-acc)}
+.mk-pohled[data-s=working] .p2{transform:scaleY(.5)}
+.mk-pohled[data-s=working] .p1{animation:po-wk 1.2s ease-in-out infinite}
+.mk-pohled[data-s=working] .p2{animation:po-wk 1.2s ease-in-out -.6s infinite}
+@keyframes po-wk{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.42)}}
+.mk-pohled[data-s=waiting] .p{fill:var(--mk-acc)}
+.mk-pohled[data-s=waiting] .p1{transform:translate(83%,-11.5%) scale(.92,.68)}
+.mk-pohled[data-s=waiting] .p2{transform:translate(-83%,38.5%) scale(.86,.22);animation:po-wt 2.2s ease-in-out infinite}
+@keyframes po-wt{0%,100%{opacity:1}50%{opacity:.35}}
+.mk-pohled[data-s=error] .p1{transform:translateX(83%) rotate(45deg) scale(.68,.9)}
+.mk-pohled[data-s=error] .p2{transform:translateX(-83%) rotate(-45deg) scale(.68,.9)}
+.mk-pohled[data-s=done] .p{fill:var(--mk-acc)}
+.mk-pohled[data-s=done] .p1{transform:translate(4%,26.7%) rotate(-42deg) scale(.68,.42)}
+.mk-pohled[data-s=done] .p2{transform:translate(-27%,11%) rotate(40deg) scale(.68,.82)}</style><title>Mel, Pohled: Pracuje</title><g class="g"><polygon class="p p1 i" points="9.5,3 13.5,8.5 13.5,23.5 9.5,29 5.5,23.5 5.5,8.5"/><polygon class="p p2 i" points="22.5,3 26.5,8.5 26.5,23.5 22.5,29 18.5,23.5 18.5,8.5"/></g></svg>

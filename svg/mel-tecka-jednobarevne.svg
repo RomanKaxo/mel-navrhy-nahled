@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="mk mk-tecka t-mono" data-s="idle" role="img" width="256" height="256" viewBox="0 0 32 32"><style>
+.mk{display:block;overflow:visible}
+.mk .i{fill:var(--mk-ink)}.mk .a{fill:var(--mk-acc)}.mk .hi{fill:var(--mk-soft)}.mk .de{fill:var(--mk-deep)}.mk .dd{fill:var(--mk-deeper)}
+.mk .p,.mk .g{transform-box:fill-box;transform-origin:center;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .35s,fill .35s}
+.mk[data-s=done] .g{animation:mk-bump .7s cubic-bezier(.2,.8,.2,1)}
+.mk[data-s=error] .g{animation:mk-shake .5s ease-in-out}
+@keyframes mk-bump{0%{transform:scale(.88)}45%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes mk-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5%)}45%{transform:translateX(4%)}70%{transform:translateX(-2%)}}
+.t-dark{--mk-ink:#FAF6FF;--mk-acc:#F21B68;--mk-soft:#FF92BA;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-light{--mk-ink:#171522;--mk-acc:#F21B68;--mk-soft:#B3124F;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-mono{--mk-ink:currentColor;--mk-acc:currentColor;--mk-soft:currentColor;--mk-deep:currentColor;--mk-deeper:currentColor}
+@media (prefers-reduced-motion:reduce){.mk *{animation:none!important;transition:none!important}}
+
+.mk-tecka.g16 .de,.mk-tecka.g16 .dd{fill:var(--mk-acc)}
+.mk-tecka .dd{fill:#A31C55}
+.mk-tecka .o{fill:none;stroke:var(--mk-acc);stroke-width:2.6;opacity:0;transition:opacity .35s}
+.mk-tecka.g16 .o{stroke-width:1.6}
+.mk-tecka .c{fill:var(--mk-acc);opacity:0;transition:opacity .35s}
+.mk-tecka[data-s=thinking] .p{animation:te-th 2.4s ease-in-out infinite;fill:var(--mk-soft)}
+.mk-tecka[data-s=thinking] .p2{animation-delay:.6s}.mk-tecka[data-s=thinking] .p3{animation-delay:1.2s}.mk-tecka[data-s=thinking] .p4{animation-delay:1.8s}
+@keyframes te-th{0%,50%,100%{opacity:.28}20%{opacity:1}}
+.mk-tecka[data-s=working] .g{transform:rotate(45deg) scale(.82);animation:te-wk 3.2s cubic-bezier(.7,0,.2,1) infinite}
+@keyframes te-wk{0%,18%{transform:rotate(0)}25%,43%{transform:rotate(90deg)}50%,68%{transform:rotate(180deg)}75%,93%{transform:rotate(270deg)}100%{transform:rotate(360deg)}}
+.mk-tecka[data-s=waiting] .p{opacity:0}
+.mk-tecka[data-s=waiting] .o{opacity:1}
+.mk-tecka[data-s=waiting] .c{opacity:1;animation:te-wt 2.2s ease-in-out infinite}
+@keyframes te-wt{0%,100%{opacity:1}50%{opacity:.25}}
+.mk-tecka[data-s=error] .p{fill:var(--mk-ink)}
+.mk-tecka[data-s=error] .p1{transform:translate(-8%,-8%)}.mk-tecka[data-s=error] .p2{transform:translate(8%,-8%)}.mk-tecka[data-s=error] .p4{transform:translate(-8%,8%)}
+.mk-tecka[data-s=error] .p3{transform:translate(20%,26%) rotate(16deg);opacity:.5}
+.mk-tecka[data-s=done] .p{fill:var(--mk-acc)}
+.mk-tecka[data-s=done] .p1{transform:translate(6%,6%)}.mk-tecka[data-s=done] .p2{transform:translate(-6%,6%)}.mk-tecka[data-s=done] .p3{transform:translate(-6%,-6%)}.mk-tecka[data-s=done] .p4{transform:translate(6%,-6%)}</style><title>Mel, návrh Tečka</title><g class="g"><polygon class="p p1 hi" points="15.2,2.6 2.6,15.2 15.2,15.2"/><polygon class="p p2 a" points="16.8,2.6 29.4,15.2 16.8,15.2"/><polygon class="p p3 de" points="16.8,16.8 29.4,16.8 16.8,29.4"/><polygon class="p p4 dd" points="15.2,16.8 2.6,16.8 15.2,29.4"/><polygon class="o" points="16,4 28,16 16,28 4,16"/><polygon class="c" points="16,11.5 20.5,16 16,20.5 11.5,16"/></g></svg>

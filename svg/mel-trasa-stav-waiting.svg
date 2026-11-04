@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="mk mk-trasa t-dark" data-s="waiting" role="img" width="256" height="256" viewBox="0 0 32 32"><style>
+.mk{display:block;overflow:visible}
+.mk .i{fill:var(--mk-ink)}.mk .a{fill:var(--mk-acc)}.mk .hi{fill:var(--mk-soft)}.mk .de{fill:var(--mk-deep)}.mk .dd{fill:var(--mk-deeper)}
+.mk .p,.mk .g{transform-box:fill-box;transform-origin:center;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .35s,fill .35s}
+.mk[data-s=done] .g{animation:mk-bump .7s cubic-bezier(.2,.8,.2,1)}
+.mk[data-s=error] .g{animation:mk-shake .5s ease-in-out}
+@keyframes mk-bump{0%{transform:scale(.88)}45%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes mk-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5%)}45%{transform:translateX(4%)}70%{transform:translateX(-2%)}}
+.t-dark{--mk-ink:#FAF6FF;--mk-acc:#F21B68;--mk-soft:#FF92BA;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-light{--mk-ink:#171522;--mk-acc:#F21B68;--mk-soft:#B3124F;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-mono{--mk-ink:currentColor;--mk-acc:currentColor;--mk-soft:currentColor;--mk-deep:currentColor;--mk-deeper:currentColor}
+@media (prefers-reduced-motion:reduce){.mk *{animation:none!important;transition:none!important}}
+
+.mk-trasa{--u:1px}.mk-trasa.g16{--u:.5px}
+.mk-trasa .l{fill:none;stroke:var(--mk-ink);stroke-width:3.8;stroke-linejoin:miter;transition:stroke .35s,opacity .35s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.mk-trasa.g16 .l{stroke-width:2}
+.mk-trasa[data-s=thinking] .p2{fill:var(--mk-soft);transform:translateY(calc(5*var(--u)));animation:tr-th 2.6s ease-in-out infinite}
+@keyframes tr-th{0%,100%{transform:translateY(calc(-1*var(--u)));opacity:.6}50%{transform:translateY(calc(6*var(--u)));opacity:1}}
+.mk-trasa[data-s=working] .l{opacity:.7}
+.mk-trasa[data-s=working] .p2{transform:translate(calc(-12*var(--u)),calc(8*var(--u)));animation:tr-wk 2.4s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes tr-wk{0%{transform:translate(calc(-12*var(--u)),calc(20*var(--u)))}25%{transform:translate(calc(-12*var(--u)),calc(-2.5*var(--u)))}50%{transform:translate(0,calc(12*var(--u)))}75%{transform:translate(calc(12*var(--u)),calc(-2.5*var(--u)))}100%{transform:translate(calc(12*var(--u)),calc(20*var(--u)))}}
+.mk-trasa[data-s=waiting] .l{opacity:.55}
+.mk-trasa[data-s=waiting] .p2{transform:scale(1.5) translateY(4%);animation:tr-wt 2.2s ease-in-out infinite}
+@keyframes tr-wt{0%,100%{opacity:1}50%{opacity:.3}}
+.mk-trasa[data-s=error] .p3{transform:translate(calc(1.5*var(--u)),calc(3*var(--u))) rotate(12deg);opacity:.5}
+.mk-trasa[data-s=error] .p2{fill:var(--mk-ink);transform:translate(calc(-2*var(--u)),calc(15*var(--u)))}
+.mk-trasa[data-s=done] .l{stroke:var(--mk-acc)}
+.mk-trasa[data-s=done] .p2{fill:var(--mk-acc)}</style><title>Mel, Trasa: Čeká na schválení</title><g class="g"><path class="p p1 l" d="M4 28V5.5L16 20"/><path class="p p3 l" d="M16 20L28 5.5V28"/><polygon class="p p2 a nod" points="16,3.5 20.5,8 16,12.5 11.5,8"/></g></svg>

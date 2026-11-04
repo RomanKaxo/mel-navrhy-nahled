@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="mk mk-faseta t-dark g16" data-s="idle" role="img" width="16" height="16" viewBox="0 0 16 16"><style>
+.mk{display:block;overflow:visible}
+.mk .i{fill:var(--mk-ink)}.mk .a{fill:var(--mk-acc)}.mk .hi{fill:var(--mk-soft)}.mk .de{fill:var(--mk-deep)}.mk .dd{fill:var(--mk-deeper)}
+.mk .p,.mk .g{transform-box:fill-box;transform-origin:center;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .35s,fill .35s}
+.mk[data-s=done] .g{animation:mk-bump .7s cubic-bezier(.2,.8,.2,1)}
+.mk[data-s=error] .g{animation:mk-shake .5s ease-in-out}
+@keyframes mk-bump{0%{transform:scale(.88)}45%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes mk-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5%)}45%{transform:translateX(4%)}70%{transform:translateX(-2%)}}
+.t-dark{--mk-ink:#FAF6FF;--mk-acc:#F21B68;--mk-soft:#FF92BA;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-light{--mk-ink:#171522;--mk-acc:#F21B68;--mk-soft:#B3124F;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-mono{--mk-ink:currentColor;--mk-acc:currentColor;--mk-soft:currentColor;--mk-deep:currentColor;--mk-deeper:currentColor}
+@media (prefers-reduced-motion:reduce){.mk *{animation:none!important;transition:none!important}}
+
+.mk-faseta[data-s=thinking] .p2{animation:fa-th 2.6s ease-in-out infinite;fill:var(--mk-soft)}
+@keyframes fa-th{0%,100%{opacity:.4;transform:translateY(8%)}50%{opacity:1;transform:translateY(-8%)}}
+.mk-faseta[data-s=working] .p1,.mk-faseta[data-s=working] .p3{opacity:.4}
+.mk-faseta[data-s=working] .p{animation:fa-wk 1.5s ease-in-out infinite}
+.mk-faseta[data-s=working] .p2{animation-delay:.25s}.mk-faseta[data-s=working] .p3{animation-delay:.5s}
+@keyframes fa-wk{0%,60%,100%{opacity:.35}25%{opacity:1}}
+.mk-faseta[data-s=waiting] .p2{fill:var(--mk-acc);transform:translateY(-14%);animation:fa-wt 2.2s ease-in-out infinite}
+@keyframes fa-wt{0%,100%{opacity:1}50%{opacity:.4}}
+.mk-faseta[data-s=waiting] .p1,.mk-faseta[data-s=waiting] .p3{opacity:.55}
+.mk-faseta[data-s=error] .p2{fill:var(--mk-ink);transform:translate(10%,26%) rotate(16deg)}
+.mk-faseta[data-s=error] .p3{transform:translateY(7%) rotate(10deg);opacity:.55}
+.mk-faseta[data-s=done] .p{fill:var(--mk-acc)}
+.mk-faseta[data-s=done] .p1{transform:translateX(12%)}.mk-faseta[data-s=done] .p3{transform:translateX(-12%)}</style><title>Mel, návrh Faseta</title><g class="g"><polygon class="p p1 i" points="1,4 4,3 4,14 1,14"/><polygon class="p p3 i" points="15,4 12,3 12,14 15,14"/><polygon class="p p2 a" points="5,3 8,7.5 11,3 11,7 8,11.5 5,7"/></g></svg>
