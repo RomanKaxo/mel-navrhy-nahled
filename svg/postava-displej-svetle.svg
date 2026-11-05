@@ -96,6 +96,15 @@
 .t-mono.ch2 .sk{fill:none;stroke:currentColor;stroke-width:1.2}.t-mono.ch2 .zo,.t-mono.ch2 .ir,.t-mono.ch2 .e{fill:currentColor}
 .t-mono.ch2 .vk,.t-mono.ch2 .vd{display:none}.t-mono.ch2 .mu{stroke:currentColor}
 
+.t-dark.ch2{--c-gr:#4A4560}.t-light.ch2{--c-gr:#171522}
+.ch2 .gr{fill:var(--c-gr);transition:fill .3s}.ch2 .ah{fill:var(--mk-acc);transition:fill .3s}.ch2 .ink{fill:var(--mk-ink)}.ch2 .ez{fill:var(--c-zo)}
+.ch2 .mv{transform-box:fill-box;transform-origin:center;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .3s,fill .3s}
+.t-mono.ch2 .gr,.t-mono.ch2 .ah{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round}
+.t-mono.ch2.g16 .gr,.t-mono.ch2.g16 .ah{stroke-width:1.1}
+.t-mono.ch2 .ez{display:none}
+.ch2 .tah{fill:none;stroke:var(--mk-ink);stroke-linecap:round;stroke-linejoin:round;transform-box:fill-box;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .3s,stroke .3s}
+.t-mono.ch2 .tah{stroke:currentColor}
+
 .mk-displej .noha{fill:var(--mk-acc)}.t-mono.mk-displej .noha{fill:currentColor}
 .mk-displej .sym{fill:none;stroke:var(--c-sk);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .3s}
 .mk-displej.g16 .sym{stroke-width:1}.t-mono.mk-displej .sym{stroke:currentColor}

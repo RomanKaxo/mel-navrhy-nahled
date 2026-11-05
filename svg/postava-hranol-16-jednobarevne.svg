@@ -95,4 +95,13 @@
 .t-mono.ch2 .pl{fill:none;stroke:currentColor;stroke-width:1.2}.t-mono.ch2.g16 .pl{stroke:none}
 .t-mono.ch2 .sk{fill:none;stroke:currentColor;stroke-width:1.2}.t-mono.ch2 .zo,.t-mono.ch2 .ir,.t-mono.ch2 .e{fill:currentColor}
 .t-mono.ch2 .vk,.t-mono.ch2 .vd{display:none}.t-mono.ch2 .mu{stroke:currentColor}
+
+.t-dark.ch2{--c-gr:#4A4560}.t-light.ch2{--c-gr:#171522}
+.ch2 .gr{fill:var(--c-gr);transition:fill .3s}.ch2 .ah{fill:var(--mk-acc);transition:fill .3s}.ch2 .ink{fill:var(--mk-ink)}.ch2 .ez{fill:var(--c-zo)}
+.ch2 .mv{transform-box:fill-box;transform-origin:center;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .3s,fill .3s}
+.t-mono.ch2 .gr,.t-mono.ch2 .ah{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round}
+.t-mono.ch2.g16 .gr,.t-mono.ch2.g16 .ah{stroke-width:1.1}
+.t-mono.ch2 .ez{display:none}
+.ch2 .tah{fill:none;stroke:var(--mk-ink);stroke-linecap:round;stroke-linejoin:round;transform-box:fill-box;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .3s,stroke .3s}
+.t-mono.ch2 .tah{stroke:currentColor}
 .mk-hranol .obrys{fill:none;stroke:none}.t-mono.mk-hranol .h,.t-mono.mk-hranol .h2{stroke:none}.t-mono.mk-hranol .obrys{stroke:currentColor;stroke-width:1.7}.t-mono.mk-hranol.g16 .obrys{stroke-width:1.1}.t-mono.mk-hranol .rb{fill:currentColor}</style><title>Mel, návrh Hranol</title><g class="g"><g class="tel"><polygon class="h" points="8,.5 3,3 3,12.5 8,15.5"/><polygon class="h2" points="8,.5 13,3 13,12.5 8,15.5"/><polygon class="obrys" points="8,.5 13,3 13,12.5 8,15.5 3,12.5 3,3"/><polygon class="ob b1" points="4,4.6 7.6,4.6 7.6,5.8 4,5.8"/><polygon class="ob b2" points="8.4,4.6 12,4.6 12,5.8 8.4,5.8"/><g class="oci"><polygon class="e e1" points="5.9,6.5 7.2,7.8 5.9,9.1 4.6000000000000005,7.8"/><polygon class="e e2" points="10.1,6.5 11.4,7.8 10.1,9.1 8.799999999999999,7.8"/></g><polygon class="us" points="6,12 10,12 10,13 6,13"/><polygon class="rb" points="8,1.4000000000000001 9.3,2.7 8,4 6.7,2.7"/></g></g></svg>

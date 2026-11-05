@@ -95,4 +95,13 @@
 .t-mono.ch2 .pl{fill:none;stroke:currentColor;stroke-width:1.2}.t-mono.ch2.g16 .pl{stroke:none}
 .t-mono.ch2 .sk{fill:none;stroke:currentColor;stroke-width:1.2}.t-mono.ch2 .zo,.t-mono.ch2 .ir,.t-mono.ch2 .e{fill:currentColor}
 .t-mono.ch2 .vk,.t-mono.ch2 .vd{display:none}.t-mono.ch2 .mu{stroke:currentColor}
+
+.t-dark.ch2{--c-gr:#4A4560}.t-light.ch2{--c-gr:#171522}
+.ch2 .gr{fill:var(--c-gr);transition:fill .3s}.ch2 .ah{fill:var(--mk-acc);transition:fill .3s}.ch2 .ink{fill:var(--mk-ink)}.ch2 .ez{fill:var(--c-zo)}
+.ch2 .mv{transform-box:fill-box;transform-origin:center;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .3s,fill .3s}
+.t-mono.ch2 .gr,.t-mono.ch2 .ah{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round}
+.t-mono.ch2.g16 .gr,.t-mono.ch2.g16 .ah{stroke-width:1.1}
+.t-mono.ch2 .ez{display:none}
+.ch2 .tah{fill:none;stroke:var(--mk-ink);stroke-linecap:round;stroke-linejoin:round;transform-box:fill-box;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .3s,stroke .3s}
+.t-mono.ch2 .tah{stroke:currentColor}
 .t-dark.mk-bystry{--c-h:#3A3648;--c-vk:#3A3648}.t-light.mk-bystry{--c-h:#171522;--c-vk:#171522}.mk-bystry{--u:1.2px;--ky:.14}.mk-bystry.g16{--u:.5px}.mk-bystry[data-s=thinking]{--ky:.05;--kd:.08}.mk-bystry[data-s=working]{--ky:.16;--kd:.28}.mk-bystry[data-s=waiting]{--ky:0}.mk-bystry[data-s=error]{--ky:.38}.mk-bystry[data-s=done]{--ky:.05;--kd:.5}</style><title>Mel, Bystrý: Přemýšlí</title><g class="g"><g class="tel"><ellipse class="h" cx="16" cy="16.5" rx="14.5" ry="13.5"/><polygon class="rb" points="16,5.1000000000000005 18.3,7.4 16,9.7 13.7,7.4"/><circle class="sk" cx="10.4" cy="16" r="4.9"/><rect class="vk vk1" x="5.1" y="10.7" width="10.600000000000001" height="10.600000000000001"/><rect class="vd" x="5.1" y="15.8" width="10.600000000000001" height="5.5"/><circle class="sk" cx="21.6" cy="16" r="4.9"/><rect class="vk vk2" x="16.300000000000004" y="10.7" width="10.600000000000001" height="10.600000000000001"/><rect class="vd" x="16.300000000000004" y="15.8" width="10.600000000000001" height="5.5"/><g class="oci"><circle class="zo" cx="10.4" cy="16" r="3.3"/><circle class="ir" cx="11.5" cy="14.9" r="1"/><circle class="zo" cx="21.6" cy="16" r="3.3"/><circle class="ir" cx="22.7" cy="14.9" r="1"/></g><path class="mu m-s" d="M14.1 24.4q1.9 1 3.8 0"/><path class="mu m-n" d="M14.48 25h3.04"/><path class="mu m-t" d="M14.48 25.599999999999998q1.52 -1 3.04 0"/><path class="mu m-o" d="M15.145 24.9h1.71"/></g></g></svg>

@@ -95,4 +95,13 @@
 .t-mono.ch2 .pl{fill:none;stroke:currentColor;stroke-width:1.2}.t-mono.ch2.g16 .pl{stroke:none}
 .t-mono.ch2 .sk{fill:none;stroke:currentColor;stroke-width:1.2}.t-mono.ch2 .zo,.t-mono.ch2 .ir,.t-mono.ch2 .e{fill:currentColor}
 .t-mono.ch2 .vk,.t-mono.ch2 .vd{display:none}.t-mono.ch2 .mu{stroke:currentColor}
+
+.t-dark.ch2{--c-gr:#4A4560}.t-light.ch2{--c-gr:#171522}
+.ch2 .gr{fill:var(--c-gr);transition:fill .3s}.ch2 .ah{fill:var(--mk-acc);transition:fill .3s}.ch2 .ink{fill:var(--mk-ink)}.ch2 .ez{fill:var(--c-zo)}
+.ch2 .mv{transform-box:fill-box;transform-origin:center;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .3s,fill .3s}
+.t-mono.ch2 .gr,.t-mono.ch2 .ah{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round}
+.t-mono.ch2.g16 .gr,.t-mono.ch2.g16 .ah{stroke-width:1.1}
+.t-mono.ch2 .ez{display:none}
+.ch2 .tah{fill:none;stroke:var(--mk-ink);stroke-linecap:round;stroke-linejoin:round;transform-box:fill-box;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .3s,stroke .3s}
+.t-mono.ch2 .tah{stroke:currentColor}
 .mk-hranol .obrys{fill:none;stroke:none}.t-mono.mk-hranol .h,.t-mono.mk-hranol .h2{stroke:none}.t-mono.mk-hranol .obrys{stroke:currentColor;stroke-width:1.7}.t-mono.mk-hranol.g16 .obrys{stroke-width:1.1}.t-mono.mk-hranol .rb{fill:currentColor}</style><title>Mel, Hranol: Chyba</title><g class="g"><g class="tel"><polygon class="h" points="16,1 6.5,6.5 6.5,24.5 16,31"/><polygon class="h2" points="16,1 25.5,6.5 25.5,24.5 16,31"/><polygon class="obrys" points="16,1 25.5,6.5 25.5,24.5 16,31 6.5,24.5 6.5,6.5"/><polygon class="ob b1" points="8.2,10 15.4,10 15.4,12 8.2,12"/><polygon class="ob b2" points="16.6,10 23.8,10 23.8,12 16.6,12"/><g class="oci"><polygon class="e e1" points="11.8,13.3 13.9,15.4 11.8,17.5 9.700000000000001,15.4"/><polygon class="e e2" points="20.2,13.3 22.3,15.4 20.2,17.5 18.099999999999998,15.4"/></g><polygon class="us" points="12.5,24 19.5,24 19.5,25.6 12.5,25.6"/><polygon class="rb" points="16,4 18.2,6.2 16,8.4 13.8,6.2"/></g></g></svg>
