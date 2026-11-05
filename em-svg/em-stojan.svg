@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="em " data-s="idle" data-var="stojan" width="256" height="256" viewBox="0 0 64 64" role="img" aria-label="Em"><style>.em{display:block;overflow:visible;--ky:.09}
+.em[data-s=thinking]{--ky:.03}.em[data-s=waiting]{--ky:0}.em[data-s=error]{--ky:0}
+.em .koren,.em .hlava,.em .noha,.em .oko,.em .zor,.em .vk,.em .radost,.em .mu path,.em .u-o,.em .kus,.em .tiky,.em .lek,.em .jisk,.em .mysl,.em .trup,.em .deska{transform-box:fill-box}
+.em .koren{transform-origin:50% 100%}.em .hlava{transform-origin:50% 100%;transition:transform .42s cubic-bezier(.3,1.4,.5,1)}
+.em .nl{transform-origin:70% 0}.em .np{transform-origin:30% 0}.em .noha{transition:transform .3s}
+.em .oko{transform-origin:center;transition:transform .28s cubic-bezier(.3,1.5,.5,1),opacity .15s}
+.em .zor{transform-origin:center;transform:translate(calc(var(--gx,0)*1px),calc(var(--gy,0)*1px));transition:transform .24s cubic-bezier(.2,.8,.2,1)}
+.em .vk{transform-origin:50% 0;transform:scaleY(var(--ky,0));transition:transform .16s ease-out}
+.em .radost,.em .mu path,.em .u-o,.em .kus,.em .tiky,.em .lek,.em .jisk,.em .mysl{opacity:0;transition:opacity .2s}
+.em .trup,.em .noha{transition:fill .3s,transform .3s}
+.em .u-s{opacity:1}
+/* klid: drobné přenášení váhy, mrkání a rozhlížení řídí skript v náhodných rozestupech */
+.em[data-s=idle] .koren{animation:em-dech 5.3s ease-in-out infinite}
+@keyframes em-dech{0%,100%{transform:scale(1,1)}46%{transform:scale(.997,1.012)}}
+/* přemýšlí: hlava se nakloní, oči hledají, nad hlavou roste myšlenka */
+.em[data-s=thinking] .hlava{transform:rotate(-6deg);animation:em-mys 5.1s ease-in-out .42s infinite}
+@keyframes em-mys{0%,100%{transform:rotate(-6deg)}32%{transform:rotate(-7.5deg)}58%{transform:rotate(-4.5deg)}78%{transform:rotate(-6.8deg)}}
+.em[data-s=thinking] .zor{--gx:2.4;--gy:-2.3;animation:em-hled 3.7s cubic-bezier(.5,0,.3,1) .42s infinite}
+@keyframes em-hled{0%,18%{transform:translate(2.4px,-2.3px)}26%,46%{transform:translate(-2.6px,-2px)}54%,70%{transform:translate(.6px,-2.8px)}78%,100%{transform:translate(2.4px,-2.3px)}}
+.em[data-s=thinking] .oko-p{transform:scale(1.06)}.em[data-s=thinking] .oko-l{transform:scale(.94)}
+.em[data-s=thinking] .u-s{opacity:0}.em[data-s=thinking] .u-n{opacity:1;transform:translateX(2.4px) scaleX(.7);transform-origin:center}
+.em[data-s=thinking] .mysl{opacity:1}.em[data-s=thinking] .mysl circle{animation:em-byl 2.6s ease-in-out infinite}.em[data-s=thinking] .mysl circle:nth-child(2){animation-delay:.3s}.em[data-s=thinking] .mysl circle:nth-child(3){animation-delay:.6s}
+@keyframes em-byl{0%,100%{opacity:.25}45%{opacity:1}}
+.em[data-s=thinking] .nl{transform:translateY(-.8px) rotate(2deg)}
+/* pracuje: tělo jde v rytmu pokládání, nohy mají vlastní krok, kameny se skládají na hlavu */
+.em[data-s=working] .koren{animation:em-prace 3s cubic-bezier(.4,0,.2,1) .25s infinite}
+@keyframes em-prace{0%,8%{transform:scale(1,1)}12%{transform:scale(1.045,.945)}19%{transform:scale(.985,1.02)}26%,41%{transform:scale(1,1)}45%{transform:scale(1.045,.945)}52%{transform:scale(.985,1.02)}59%,74%{transform:scale(1,1)}78%{transform:scale(1.06,.93)}86%{transform:scale(.98,1.03)}94%,100%{transform:scale(1,1)}}
+.em[data-s=working] .nl{animation:em-krok .74s ease-in-out .25s infinite}.em[data-s=working] .np{animation:em-krok .74s ease-in-out -.12s infinite}
+@keyframes em-krok{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.4px)}}
+.em[data-s=working] .zor{--gy:-2.6;animation:em-sled 3s ease-in-out .25s infinite}
+@keyframes em-sled{0%,6%{transform:translate(0,-2.8px)}12%,20%{transform:translate(0,1.4px)}30%,40%{transform:translate(1.4px,-2.8px)}45%,54%{transform:translate(0,1.4px)}64%,74%{transform:translate(-1.4px,-2.8px)}78%,88%{transform:translate(0,1.2px)}100%{transform:translate(0,-2.8px)}}
+.em[data-s=working]{--ky:.14}.em[data-s=working] .u-s{opacity:0}.em[data-s=working] .u-n{opacity:1}
+.em[data-s=working] .kus{opacity:1}
+.em[data-s=working] .kus1{animation:em-k1 3s cubic-bezier(.5,0,.8,.6) .25s infinite}.em[data-s=working] .kus2{animation:em-k2 3s cubic-bezier(.5,0,.8,.6) .25s infinite}.em[data-s=working] .kus3{animation:em-k3 3s cubic-bezier(.5,0,.8,.6) .25s infinite}
+@keyframes em-k1{0%{opacity:0;transform:translateY(-16px)}3%{opacity:1}12%,92%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(0)}}
+@keyframes em-k2{0%,33%{opacity:0;transform:translateY(-16px)}36%{opacity:1}45%,92%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(0)}}
+@keyframes em-k3{0%,66%{opacity:0;transform:translateY(-16px)}69%{opacity:1}78%,92%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(0)}}
+/* čeká: dívá se přímo na tebe a poklepává nohou, dvě klepnutí a pauza */
+.em[data-s=waiting] .hlava{transform:rotate(3.5deg) translateY(-.6px)}
+.em[data-s=waiting] .zor{transform:translate(calc(var(--gx,0)*1px),calc(var(--gy,.4)*1px)) scale(1.08)}
+.em[data-s=waiting] .oko{transform:scale(1.05)}
+.em[data-s=waiting] .u-s{opacity:0}.em[data-s=waiting] .u-n{opacity:1}
+.em[data-s=waiting] .np{transform-origin:15% 100%;animation:em-klep 3.3s ease-out .35s infinite}
+@keyframes em-klep{0%,8%{transform:rotate(0)}12%{transform:rotate(-7deg)}17%{transform:rotate(0)}24%{transform:rotate(-7deg)}29%,100%{transform:rotate(0)}}
+.em[data-s=waiting] .tiky{animation:em-tik 3.3s ease-out .35s infinite}
+@keyframes em-tik{0%,15%{opacity:0}17%{opacity:1}22%{opacity:0}29%{opacity:1}36%,100%{opacity:0}}
+/* chyba: krátký leknutí a výskok, pak klesne a vydechne */
+.em[data-s=error] .trup,.em[data-s=error] .noha{fill:#B3124F}
+.em[data-s=error] .koren{animation:em-lek .95s cubic-bezier(.3,0,.3,1) both}
+@keyframes em-lek{0%{transform:scale(1,1) translateY(0)}10%{transform:scale(1.07,.9) translateY(0)}24%{transform:scale(.93,1.1) translateY(-7px)}42%{transform:scale(1.05,.95) translateY(0)}60%{transform:scale(.99,1.01)}100%{transform:scale(1,.985)}}
+.em[data-s=error] .hlava{transform:rotate(4.5deg) translateY(1.4px)}
+.em[data-s=error] .oko{transform:scale(1.14)}.em[data-s=error] .zor{transform:translate(-.6px,1.2px) scale(.66)}
+.em[data-s=error] .u-s{opacity:0}.em[data-s=error] .u-w{opacity:1}
+.em[data-s=error] .lek{animation:em-lekb .85s ease-out both}
+@keyframes em-lekb{0%,18%{opacity:0;transform:translateY(3px)}28%{opacity:1;transform:translateY(0)}70%{opacity:1}100%{opacity:0;transform:translateY(-2px)}}
+/* hotovo: nádech, poskok s protažením, dopad a dojezd, oči se usmějí */
+.em[data-s=done] .koren{animation:em-hop 1.15s cubic-bezier(.3,0,.3,1) both}
+@keyframes em-hop{0%{transform:scale(1,1) translateY(0)}16%{transform:scale(1.09,.88) translateY(0)}36%{transform:scale(.92,1.11) translateY(-11px)}54%{transform:scale(.98,1.02) translateY(-3px)}64%{transform:scale(1.08,.9) translateY(0)}78%{transform:scale(.98,1.025)}90%{transform:scale(1.012,.99)}100%{transform:scale(1,1)}}
+.em[data-s=done] .oci{opacity:0}.em[data-s=done] .radost{opacity:1}
+.em[data-s=done] .u-s{opacity:0}.em[data-s=done] .u-v{opacity:1}
+.em[data-s=done] .jisk{animation:em-jis .95s ease-out .3s both}
+@keyframes em-jis{0%{opacity:0;transform:scale(.6)}35%{opacity:1;transform:scale(1.04)}100%{opacity:0;transform:scale(1.16)}}
+.em .oci{transition:opacity .16s}
+/* mikroreakce */
+.em.hov .hlava{transform:translateY(-1.2px) scale(1.01)}.em.hov .oko{transform:scale(1.07)}
+@media (prefers-reduced-motion:reduce){.em *{animation:none!important;transition:none!important}.em[data-s=error] .lek{opacity:1}.em[data-s=done] .jisk{opacity:1}.em[data-s=working] .tiky{opacity:0}.em[data-s=waiting] .tiky{opacity:1}.em[data-s=thinking] .mysl circle{opacity:1}.em-mini *{animation:none!important}}
+.em-mini{display:block;flex:none}
+.em-mini[data-s=thinking] .mpip{animation:mi-pul 1.6s steps(2) infinite}.em-mini[data-s=waiting] .mpip{animation:mi-pul 1.1s steps(2) infinite}.em-mini[data-s=working] .mpip{animation:mi-pul .6s steps(2) infinite}
+@keyframes mi-pul{50%{opacity:.25}}
+
+.em.sled .zor{transition:none}
+</style><defs><clipPath id="em3l"><rect x="20.1" y="19.5" width="11" height="11" rx="3.74"/></clipPath><clipPath id="em3p"><rect x="32.9" y="19.5" width="11" height="11" rx="3.74"/></clipPath></defs><g class="koren"><g class="kusy"><polygon class="kus kus1" points="32,-3 36.4,1 32,5 27.6,1" fill="#F21B68"/><polygon class="kus kus2" points="34,-10 38.4,-6 34,-2 29.6,-6" fill="#F21B68"/><polygon class="kus kus3" points="32,-17 36.4,-13 32,-9 27.6,-13" fill="#FF92BA"/></g><g class="jisk" fill="#FF92BA"><polygon points="4,6 7,10 4,14 1,10"/><polygon points="60,3 64,8 60,13 56,8"/><polygon class="j3" points="32,-8 35,-4 32,0 29,-4"/></g><g class="lek" stroke="#FF92BA" stroke-width="2.6" stroke-linecap="round" fill="none"><path d="M6 1l-2-6M64.4 0l3-6M32 -5v-7"/></g><g class="mysl" fill="#FF92BA"><circle cx="53.4" cy="4" r="1.6"/><circle cx="58.4" cy="-2" r="2.3"/><circle cx="64.4" cy="-9" r="3.2"/></g><g class="tiky" stroke="#FF92BA" stroke-width="2.2" stroke-linecap="round" fill="none"><path d="M48.3 58l5-1.5M48.3 53l4.5-3"/></g><g class="nohy"><path class="noha nl" fill="#F21B68" d="M10.91 30.00Q11 28 13.00 28.00L29.50 28.00Q29.5 28 29.50 28.00L29.50 38.00Q29.5 38 29.50 38.00L27.45 56.03Q27 60 23.00 60.00L13.60 60.00Q9.6 60 9.77 56.00Z"/><path class="noha np" fill="#F21B68" d="M53.09 30.00Q53 28 51.00 28.00L34.50 28.00Q34.5 28 34.50 28.00L34.50 38.00Q34.5 38 34.50 38.00L36.55 56.03Q37 60 41.00 60.00L50.40 60.00Q54.4 60 54.23 56.00Z"/></g><g class="hlava"><path class="trup" fill="#F21B68" d="M10.28 15.99Q10 9 16.93 7.98L23.54 7.01Q27 6.5 29.47 8.97L29.50 9.00Q32 11.5 34.50 8.50L34.76 8.19Q37 5.5 40.46 6.01L47.07 6.98Q54 8 53.73 14.99L52.99 34.00Q52.8 39 47.80 39.00L16.20 39.00Q11.2 39 11.00 34.00Z"/><rect class="deska" x="15.5" y="15" width="33" height="22" rx="8.5" fill="#171522"/><g class="oci"><g class="oko oko-l" clip-path="url(#em3l)"><rect x="20.1" y="19.5" width="11" height="11" rx="3.74" fill="#FAF6FF"/><g class="zor"><circle cx="25.6" cy="25" r="3.6" fill="#171522"/><circle class="odl" cx="26.824" cy="23.704" r="0.936" fill="#FAF6FF"/></g><rect class="vk" x="19.6" y="19" width="12" height="12" fill="#171522"/></g><g class="oko oko-p" clip-path="url(#em3p)"><rect x="32.9" y="19.5" width="11" height="11" rx="3.74" fill="#FAF6FF"/><g class="zor"><circle cx="38.4" cy="25" r="3.6" fill="#171522"/><circle class="odl" cx="39.623999999999995" cy="23.704" r="0.936" fill="#FAF6FF"/></g><rect class="vk" x="32.4" y="19" width="12" height="12" fill="#171522"/></g></g><g class="radost" stroke="#FAF6FF" stroke-width="2.6" stroke-linecap="round" fill="none"><path d="M21.200000000000003 26.76Q25.6 20.16 30 26.76"/><path d="M34 26.76Q38.4 20.16 42.8 26.76"/></g><g class="mu" stroke="#FAF6FF" stroke-width="1.9" stroke-linecap="round" fill="none"><path class="u-s" d="M28.6 33.2q3.4 2.5 6.8 0"/><path class="u-n" d="M29.8 33.800000000000004h4.4"/><path class="u-v" d="M27.6 32.6q4.4 4.2 8.8 0"/><path class="u-w" d="M28.6 34.2q1.7 -2 3.4 0t3.4 0"/></g><circle class="u-o" cx="32" cy="33.800000000000004" r="1.9" fill="#FAF6FF"/></g></g></svg>
