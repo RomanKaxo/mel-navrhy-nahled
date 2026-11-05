@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="mk ch ch2 mk-oblouk t-light g16" data-s="idle" role="img" width="16" height="16" viewBox="0 0 16 16"><style>
+.mk{display:block;overflow:visible}
+.mk .i{fill:var(--mk-ink)}.mk .a{fill:var(--mk-acc)}.mk .hi{fill:var(--mk-soft)}.mk .de{fill:var(--mk-deep)}.mk .dd{fill:var(--mk-deeper)}
+.mk .p,.mk .g{transform-box:fill-box;transform-origin:center;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .35s,fill .35s}
+.mk[data-s=done] .g{animation:mk-bump .7s cubic-bezier(.2,.8,.2,1)}
+.mk[data-s=error] .g{animation:mk-shake .5s ease-in-out}
+@keyframes mk-bump{0%{transform:scale(.88)}45%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes mk-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5%)}45%{transform:translateX(4%)}70%{transform:translateX(-2%)}}
+.t-dark{--mk-ink:#FAF6FF;--mk-acc:#F21B68;--mk-soft:#FF92BA;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-light{--mk-ink:#171522;--mk-acc:#F21B68;--mk-soft:#B3124F;--mk-deep:#B3124F;--mk-deeper:#85254E}
+.t-mono{--mk-ink:currentColor;--mk-acc:currentColor;--mk-soft:currentColor;--mk-deep:currentColor;--mk-deeper:currentColor}
+@media (prefers-reduced-motion:reduce){.mk *{animation:none!important;transition:none!important}}
+
+.ch{--u:1px;--oy:1;--ex:1;--c-h:var(--mk-ink);--c-h2:var(--ch-h2);--c-e:var(--ch-e)}
+.ch.g16{--u:.5px}
+.t-dark.ch{--ch-h2:#CFC8DD;--ch-e:#171522}.t-light.ch{--ch-h2:#3A3648;--ch-e:#FAF6FF}
+.ch .h{fill:var(--c-h);transition:fill .35s}.ch .h2{fill:var(--c-h2)}
+.ch .e,.ch .ob,.ch .us{fill:var(--c-e)}
+.ch .e,.ch .ob,.ch .us,.ch .rb,.ch .tel,.ch .oci,.ch .cap{transform-box:fill-box;transform-origin:center;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s,fill .35s}
+.ch .rb{fill:var(--mk-acc)}
+.ch .e{transform:scale(var(--ex),var(--oy))}
+.t-mono.ch .h,.t-mono.ch .h2{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:miter}
+.t-mono.ch.g16 .h,.t-mono.ch.g16 .h2{stroke-width:1.1}
+.t-mono.ch .e,.t-mono.ch .ob,.t-mono.ch .us{fill:currentColor}
+/* klid: občas mrkne a rozhlédne se */
+.ch[data-s=idle] .e{animation:ch-blink 5.6s ease-in-out infinite}
+.ch[data-s=idle] .oci{animation:ch-gz-idle 11s ease-in-out infinite}
+@keyframes ch-blink{0%,93%,100%{transform:scale(var(--ex),var(--oy))}96.5%{transform:scale(var(--ex),.08)}}
+@keyframes ch-gz-idle{0%,34%,100%{transform:translate(0,0)}38%,52%{transform:translateX(calc(-1.2*var(--u)))}56%,72%{transform:translateX(calc(1.2*var(--u)))}76%{transform:translate(0,0)}}
+/* přemýšlí: pohled nahoru a stranou */
+.ch[data-s=thinking]{--oy:.82}
+.ch[data-s=thinking] .oci{transform:translate(calc(1.3*var(--u)),calc(-1.1*var(--u)));animation:ch-gz-th 3.8s ease-in-out infinite}
+.ch[data-s=thinking] .e{animation:ch-blink 4.4s ease-in-out infinite}
+@keyframes ch-gz-th{0%,40%,100%{transform:translate(calc(1.3*var(--u)),calc(-1.1*var(--u)))}52%,86%{transform:translate(calc(-1.1*var(--u)),calc(-1.1*var(--u)))}}
+.ch[data-s=thinking] .b1{transform:translateY(calc(-1.6*var(--u)))}
+.ch[data-s=thinking] .b2{transform:translateY(calc(.5*var(--u)))}
+.ch[data-s=thinking] .us{transform:translateX(calc(1.2*var(--u))) scaleX(.62)}
+.ch[data-s=thinking] .rb{fill:var(--mk-soft);animation:ch-pul 2.6s ease-in-out infinite}
+@keyframes ch-pul{0%,100%{opacity:.45}50%{opacity:1}}
+/* pracuje: soustředěně přivřené oči, čte zleva doprava */
+.ch[data-s=working]{--oy:.55}
+.ch[data-s=working] .oci{animation:ch-gz-wk 1.5s ease-in-out infinite alternate}
+@keyframes ch-gz-wk{from{transform:translateX(calc(-1.4*var(--u)))}to{transform:translateX(calc(1.4*var(--u)))}}
+.ch[data-s=working] .e{animation:ch-blink 3.2s ease-in-out infinite}
+.ch[data-s=working] .ob{transform:translateY(calc(1*var(--u)))}
+.ch[data-s=working] .us{transform:scaleX(.8)}
+.ch[data-s=working] .rb{animation:ch-rb-wk 1s ease-in-out infinite}
+@keyframes ch-rb-wk{0%,100%{transform:scale(.72)}50%{transform:scale(1.12)}}
+/* čeká: dívá se přímo na tebe, zvednuté obočí, nakloněná hlava */
+.ch[data-s=waiting]{--oy:1.08}
+.ch[data-s=waiting] .tel{transform:rotate(-5deg)}
+.ch[data-s=waiting] .e{animation:ch-blink 7s ease-in-out infinite}
+.ch[data-s=waiting] .b2{transform:translateY(calc(-2.2*var(--u)))}
+.ch[data-s=waiting] .rb{transform:scale(1.28);animation:ch-pul 2.1s ease-in-out infinite}
+/* chyba: pohled dolů, stažené obočí, pokleslá ústa, rubín mimo */
+.ch[data-s=error]{--oy:.5}
+.ch[data-s=error] .oci{transform:translate(calc(-1*var(--u)),calc(1.2*var(--u)))}
+.ch[data-s=error] .b1{transform:translateY(calc(.6*var(--u))) rotate(13deg)}
+.ch[data-s=error] .b2{transform:translateY(calc(.6*var(--u))) rotate(-13deg)}
+.ch[data-s=error] .us{transform:translateY(calc(.8*var(--u))) rotate(-11deg)}
+.ch[data-s=error] .rb{fill:var(--mk-ink);transform:rotate(45deg) scale(.68)}
+.t-light.ch[data-s=error] .rb,.t-dark.ch[data-s=error] .rb{fill:var(--mk-deep)}
+.t-mono.ch[data-s] .rb{fill:currentColor}
+/* hotovo: uvolněné přivřené oči, krátké kývnutí, náznak úsměvu jedním koutkem */
+.ch[data-s=done]{--oy:.36}
+.ch[data-s=done] .ob{transform:translateY(calc(-.9*var(--u)))}
+.ch[data-s=done] .us{transform:rotate(-8deg) scaleX(1.1)}
+.ch[data-s=done] .rb{transform:scale(1.14)}
+.ch[data-s=done] .g{animation:ch-nod .8s cubic-bezier(.2,.8,.2,1)}
+@keyframes ch-nod{0%{transform:translateY(0)}35%{transform:translateY(5%)}100%{transform:translateY(0)}}
+
+.ch2{--ky:.08;--kd:0;--c-pl:#171522;--c-sk:#FAF6FF;--c-zo:#171522;--c-us:#FAF6FF;--c-vk:var(--c-pl)}
+.t-light.ch2{--c-pl:#3A3648}
+.ch2 .pl{fill:var(--c-pl)}.ch2 .sk{fill:var(--c-sk)}.ch2 .zo{fill:var(--c-zo)}.ch2 .ir{fill:var(--mk-acc)}
+.ch2 .e{fill:var(--c-sk)}
+.ch2 .vk,.ch2 .vd{fill:var(--c-vk);transform-box:fill-box;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.ch2 .vk{transform-origin:50% 0;transform:scaleY(var(--ky))}
+.ch2 .vd{transform-origin:50% 100%;transform:scaleY(var(--kd))}
+.ch2 .mu{fill:none;stroke:var(--c-us);stroke-width:1.7;stroke-linecap:round;opacity:0;transition:opacity .3s,transform .4s;transform-box:fill-box;transform-origin:center}
+.ch2.g16 .mu{stroke-width:1}
+.ch2 .pbg,.ch2 .dt{fill:var(--c-sk)}
+/* výrazy */
+.ch2[data-s=idle] .m-s,.ch2[data-s=done] .m-s,.ch2[data-s=thinking] .m-n,.ch2[data-s=working] .m-n,.ch2[data-s=waiting] .m-o,.ch2[data-s=error] .m-t{opacity:1}
+.ch2[data-s=thinking]{--ky:.03;--kd:.1}.ch2[data-s=working]{--ky:.12;--kd:.3}.ch2[data-s=waiting]{--ky:0}.ch2[data-s=error]{--ky:.36}.ch2[data-s=done]{--ky:.04;--kd:.5}
+.ch2[data-s=idle] .vk,.ch2[data-s=thinking] .vk,.ch2[data-s=working] .vk,.ch2[data-s=waiting] .vk{animation:c2-bl 5.2s ease-in-out infinite}
+.ch2[data-s=thinking] .vk{animation-duration:4.2s}.ch2[data-s=working] .vk{animation-duration:3.3s}.ch2[data-s=waiting] .vk{animation-duration:6.4s}
+@keyframes c2-bl{0%,93%,100%{transform:scaleY(var(--ky))}96.5%{transform:scaleY(1)}}
+.ch2[data-s=error] .vk1{transform:rotate(-11deg) scaleY(var(--ky))}.ch2[data-s=error] .vk2{transform:rotate(11deg) scaleY(var(--ky))}
+.ch2[data-s=error] .oci{transform:translate(0,calc(1.1*var(--u)))}
+.ch2[data-s=done] .m-s{transform:scale(1.25)}
+.ch2[data-s=thinking] .m-n{transform:translateX(calc(1.2*var(--u))) scaleX(.6)}
+.ch2[data-s=working] .tel{animation:c2-nod 1.5s ease-in-out infinite}
+@keyframes c2-nod{0%,100%{transform:translateY(0)}50%{transform:translateY(calc(.5*var(--u)))}}
+.ch2[data-s=error] .tel{transform:translateY(calc(.8*var(--u))) rotate(3deg)}
+.t-mono.ch2 .pl{fill:none;stroke:currentColor;stroke-width:1.2}.t-mono.ch2.g16 .pl{stroke:none}
+.t-mono.ch2 .sk{fill:none;stroke:currentColor;stroke-width:1.2}.t-mono.ch2 .zo,.t-mono.ch2 .ir,.t-mono.ch2 .e{fill:currentColor}
+.t-mono.ch2 .vk,.t-mono.ch2 .vd{display:none}.t-mono.ch2 .mu{stroke:currentColor}
+.mk-oblouk .uch{fill:var(--mk-acc)}.t-mono.mk-oblouk .uch{fill:currentColor}.mk-oblouk .rb{transform-box:fill-box}.mk-oblouk[data-s=waiting] .tel{transform:rotate(-5deg)}</style><title>Mel, návrh Oblouk</title><g class="g"><g class="tel"><rect class="h" x="1.5" y="3.4" width="13" height="11.4" rx="4.2"/><rect class="pl" x="3" y="5.2" width="10" height="7.8" rx="3"/><circle class="rb" cx="8" cy="1.7" r="1.5"/><g class="oci"><circle class="e e1" cx="5.8" cy="8.1" r="1.25"/><circle class="e e2" cx="10.2" cy="8.1" r="1.25"/></g><path class="mu m-s" d="M6.2 10.8q1.8 1.1 3.6 0"/><path class="mu m-n" d="M6.56 11.4h2.8800000000000003"/><path class="mu m-t" d="M6.56 12q1.4400000000000002 -1.1 2.8800000000000003 0"/><path class="mu m-o" d="M7.1899999999999995 11.3h1.62"/></g></g></svg>

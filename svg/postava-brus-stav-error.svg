@@ -69,6 +69,33 @@
 .ch[data-s=done] .g{animation:ch-nod .8s cubic-bezier(.2,.8,.2,1)}
 @keyframes ch-nod{0%{transform:translateY(0)}35%{transform:translateY(5%)}100%{transform:translateY(0)}}
 
+.ch2{--ky:.08;--kd:0;--c-pl:#171522;--c-sk:#FAF6FF;--c-zo:#171522;--c-us:#FAF6FF;--c-vk:var(--c-pl)}
+.t-light.ch2{--c-pl:#3A3648}
+.ch2 .pl{fill:var(--c-pl)}.ch2 .sk{fill:var(--c-sk)}.ch2 .zo{fill:var(--c-zo)}.ch2 .ir{fill:var(--mk-acc)}
+.ch2 .e{fill:var(--c-sk)}
+.ch2 .vk,.ch2 .vd{fill:var(--c-vk);transform-box:fill-box;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.ch2 .vk{transform-origin:50% 0;transform:scaleY(var(--ky))}
+.ch2 .vd{transform-origin:50% 100%;transform:scaleY(var(--kd))}
+.ch2 .mu{fill:none;stroke:var(--c-us);stroke-width:1.7;stroke-linecap:round;opacity:0;transition:opacity .3s,transform .4s;transform-box:fill-box;transform-origin:center}
+.ch2.g16 .mu{stroke-width:1}
+.ch2 .pbg,.ch2 .dt{fill:var(--c-sk)}
+/* výrazy */
+.ch2[data-s=idle] .m-s,.ch2[data-s=done] .m-s,.ch2[data-s=thinking] .m-n,.ch2[data-s=working] .m-n,.ch2[data-s=waiting] .m-o,.ch2[data-s=error] .m-t{opacity:1}
+.ch2[data-s=thinking]{--ky:.03;--kd:.1}.ch2[data-s=working]{--ky:.12;--kd:.3}.ch2[data-s=waiting]{--ky:0}.ch2[data-s=error]{--ky:.36}.ch2[data-s=done]{--ky:.04;--kd:.5}
+.ch2[data-s=idle] .vk,.ch2[data-s=thinking] .vk,.ch2[data-s=working] .vk,.ch2[data-s=waiting] .vk{animation:c2-bl 5.2s ease-in-out infinite}
+.ch2[data-s=thinking] .vk{animation-duration:4.2s}.ch2[data-s=working] .vk{animation-duration:3.3s}.ch2[data-s=waiting] .vk{animation-duration:6.4s}
+@keyframes c2-bl{0%,93%,100%{transform:scaleY(var(--ky))}96.5%{transform:scaleY(1)}}
+.ch2[data-s=error] .vk1{transform:rotate(-11deg) scaleY(var(--ky))}.ch2[data-s=error] .vk2{transform:rotate(11deg) scaleY(var(--ky))}
+.ch2[data-s=error] .oci{transform:translate(0,calc(1.1*var(--u)))}
+.ch2[data-s=done] .m-s{transform:scale(1.25)}
+.ch2[data-s=thinking] .m-n{transform:translateX(calc(1.2*var(--u))) scaleX(.6)}
+.ch2[data-s=working] .tel{animation:c2-nod 1.5s ease-in-out infinite}
+@keyframes c2-nod{0%,100%{transform:translateY(0)}50%{transform:translateY(calc(.5*var(--u)))}}
+.ch2[data-s=error] .tel{transform:translateY(calc(.8*var(--u))) rotate(3deg)}
+.t-mono.ch2 .pl{fill:none;stroke:currentColor;stroke-width:1.2}.t-mono.ch2.g16 .pl{stroke:none}
+.t-mono.ch2 .sk{fill:none;stroke:currentColor;stroke-width:1.2}.t-mono.ch2 .zo,.t-mono.ch2 .ir,.t-mono.ch2 .e{fill:currentColor}
+.t-mono.ch2 .vk,.t-mono.ch2 .vd{display:none}.t-mono.ch2 .mu{stroke:currentColor}
+
 .t-dark.mk-brus{--c-h:#3A3648}.t-light.mk-brus{--c-h:#171522}
 .mk-brus .e{fill:#FAF6FF}.mk-brus .cap{fill:var(--mk-acc);transition:fill .35s,opacity .35s}
 .t-mono.mk-brus .cap{fill:currentColor}.t-mono.mk-brus .e{fill:currentColor}
