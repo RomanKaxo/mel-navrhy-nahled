@@ -56,5 +56,20 @@ html.lenis { scroll-behavior:auto; }
   .px-hero [data-parallax-layer] {transform:none!important}
 }
 
-/* Text i CTA jsou viditelné hned; jediný pohyb hero určuje scroll. */
+/* Text i CTA jsou viditelné hned. */
 .px-hero .hero-text>h1,.px-hero .hero-side>* {animation:none}
+
+/* Vnitřní prvky mají vlastní transformace; vnější vrstvy patří ScrollTriggeru. */
+.px-mel {padding:0;border:0;background:none;color:inherit;line-height:0;pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.px-mel:disabled {cursor:default}
+.px-mel:focus-visible {outline:3px solid var(--accent-text);outline-offset:6px;border-radius:24px}
+.px-mel-art {display:block;width:100%;height:auto;overflow:visible}
+.px-mel .koren,.px-mel .px-jump {transform-origin:32px 60px}
+.px-mel .oci {transform-box:fill-box;transform-origin:center}
+.px-mel-shadow {transform-origin:160px 310px}
+.px-ridge,.px-ridge-far {transform-origin:720px 1000px}
+.px-light {transform-origin:720px 610px}
+@media (max-width:599px) {
+  .px-stars path:last-child {display:none}
+  .px-light ellipse:last-child {display:none}
+}

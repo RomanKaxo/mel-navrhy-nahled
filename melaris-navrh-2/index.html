@@ -30,11 +30,11 @@
 <script src="assets/js/early.js?v=20261110p1"></script>
 <script src="assets/js/main.js?v=20261110p1" defer></script>
 <link rel="stylesheet" href="assets/vendor/lenis-1.3.27.css?v=20261110p1">
-<link rel="stylesheet" href="css/parallax.css?v=20261110p2">
+<link rel="stylesheet" href="css/parallax.css?v=20261110a1">
 <script src="assets/vendor/gsap-3.15.1.min.js?v=20261110p1" defer></script>
 <script src="assets/vendor/ScrollTrigger-3.15.1.min.js?v=20261110p1" defer></script>
 <script src="assets/vendor/lenis-1.3.27.min.js?v=20261110p1" defer></script>
-<script src="js/parallax.js?v=20261110p1" defer></script>
+<script src="js/parallax.js?v=20261110a1" defer></script>
 </head>
 <body>
 <a class="skip" href="#obsah">Přeskočit na obsah</a>
@@ -84,9 +84,9 @@
   <div class="px-sky px-layer" data-parallax-layer="1" aria-hidden="true">
     <svg viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice" focusable="false">
       <defs><pattern id="px-grid" width="96" height="96" patternUnits="userSpaceOnUse"><path d="M96 0H0V96" fill="none" stroke="currentColor" stroke-width="1"/></pattern></defs>
-      <path fill="url(#px-grid)" d="M0 0h1440v1000H0z"/>
-      <g fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="720" cy="610" rx="630" ry="390"/><ellipse cx="720" cy="610" rx="505" ry="312"/></g>
-      <g class="px-stars" fill="currentColor"><path d="m195 180 8 8-8 8-8-8zm1045 100 8 8-8 8-8-8zm-400-180 6 6-6 6-6-6z"/></g>
+      <path class="px-grid-drift" fill="url(#px-grid)" d="M-96-96h1632v1192H-96z"/>
+      <g class="px-light" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="720" cy="610" rx="630" ry="390"/><ellipse cx="720" cy="610" rx="505" ry="312"/></g>
+      <g class="px-stars" fill="currentColor"><path d="m195 180 8 8-8 8-8-8z"/><path d="m1240 280 8 8-8 8-8-8z"/><path d="m840 100 6 6-6 6-6-6z"/></g>
     </svg>
   </div>
   <div class="px-terrain px-layer" data-parallax-layer="2" aria-hidden="true">
@@ -109,20 +109,23 @@
     </div>
   </div>
 
-  <div class="px-front px-layer" data-parallax-layer="4" aria-hidden="true">
-    <svg class="px-ground" viewBox="0 0 1440 1000" preserveAspectRatio="none" focusable="false"><path d="M0 890 240 790 720 960 1200 790 1440 890V1000H0Z"/></svg>
-    <svg class="px-terminal" viewBox="0 0 480 240" focusable="false">
+  <div class="px-front px-layer" data-parallax-layer="4">
+    <svg aria-hidden="true" class="px-ground" viewBox="0 0 1440 1000" preserveAspectRatio="none" focusable="false"><path d="M0 890 240 790 720 960 1200 790 1440 890V1000H0Z"/></svg>
+    <svg aria-hidden="true" class="px-terminal" viewBox="0 0 480 240" focusable="false">
       <path class="px-terminal-shadow" d="m0 220 335-20 145 30-335 10Z"/>
       <rect class="px-window" x="12" y="10" width="440" height="202" rx="14"/>
       <path class="px-window-line" d="M12 52h440"/>
       <g class="px-window-dots"><circle cx="34" cy="31" r="4"/><circle cx="50" cy="31" r="4"/><circle cx="66" cy="31" r="4"/></g>
       <g class="px-code" font-size="18"><text x="90" y="38">Melaris / pracovní prostor</text><text x="34" y="89">&gt; zadání → Mel + tým</text><text x="34" y="125">  &lt;main id="obsah"&gt;</text><text x="34" y="175" class="px-code-ok">✓ ok</text><path d="M114 170h12" stroke="currentColor" stroke-width="2"/></g>
     </svg>
-    <svg class="px-mel" viewBox="0 0 320 340" focusable="false">
+    <button class="px-mel" type="button" aria-label="Mel — poskočit" disabled>
+    <svg class="px-mel-art" viewBox="0 0 320 340" aria-hidden="true" focusable="false">
       <ellipse class="px-mel-shadow" cx="160" cy="310" rx="110" ry="16"/>
       <!-- Oficiální Mel: Elaris-Harness/public/mascot-avatar.svg, beze změny tvaru a barev. -->
-      <g class="px-mascot" transform="translate(16 30) scale(4.5)"><defs><clipPath id="px-mel-l"><rect x="17.5" y="23.3" width="13.4" height="13.4" rx="4.556"/></clipPath><clipPath id="px-mel-p"><rect x="33.099" y="23.3" width="13.4" height="13.4" rx="4.556"/></clipPath></defs><g class="koren"><g class="nohy"><path class="noha nl" fill="#F21B68" d="M5.06 39.00Q5.2 37 7.20 37.00L30.00 37.00Q30 37 30.00 37.00L30.00 47.00Q30 47 30.00 47.00L27.54 56.14Q26.5 60 22.50 60.00L8.60 60.00Q3.6 60 3.95 55.01Z"/><path class="noha np" fill="#F21B68" d="M58.94 39.00Q58.8 37 56.80 37.00L34.00 37.00Q34 37 34.00 37.00L34.00 47.00Q34 47 34.00 47.00L36.46 56.14Q37.5 60 41.50 60.00L55.40 60.00Q60.4 60 60.05 55.01Z"/></g><g class="hlava"><path class="trup" fill="#F21B68" d="M4.27 17.99Q4 11 10.93 10.01L21.54 8.49Q25 8 27.75 10.16L28.85 11.03Q32 13.5 34.93 10.78L36.44 9.38Q39 7 42.48 7.33L53.03 8.34Q60 9 59.74 16.00L58.78 42.00Q58.6 47 53.60 47.00L10.40 47.00Q5.4 47 5.21 42.00Z"/><rect class="deska" x="11.5" y="18.5" width="41" height="26" rx="10" fill="#171522"/><g class="oci"><g class="oko oko-l" clip-path="url(#px-mel-l)"><rect x="17.5" y="23.3" width="13.4" height="13.4" rx="4.556" fill="#FAF6FF"/><g class="zor"><circle cx="24.2" cy="30" r="4.4" fill="#171522"/><circle class="odl" cx="25.695" cy="28.416" r="1.144" fill="#FAF6FF"/></g><rect class="vk" x="17" y="22.8" width="14.4" height="1.30" fill="#171522"/></g><g class="oko oko-p" clip-path="url(#px-mel-p)"><rect x="33.099" y="23.3" width="13.4" height="13.4" rx="4.556" fill="#FAF6FF"/><g class="zor"><circle cx="39.8" cy="30" r="4.4" fill="#171522"/><circle class="odl" cx="41.296" cy="28.416" r="1.144" fill="#FAF6FF"/></g><rect class="vk" x="32.599" y="22.8" width="14.4" height="1.30" fill="#171522"/></g></g><g class="mu" stroke="#FAF6FF" stroke-width="1.9" stroke-linecap="round" fill="none"><path class="u-s" d="M28.6 40q3.4 2.5 6.8 0"/></g></g></g></g>
+      <g class="px-mascot" transform="translate(16 30) scale(4.5)"><defs><clipPath id="px-mel-l"><rect x="17.5" y="23.3" width="13.4" height="13.4" rx="4.556"/></clipPath><clipPath id="px-mel-p"><rect x="33.099" y="23.3" width="13.4" height="13.4" rx="4.556"/></clipPath></defs><g class="px-jump"><g class="koren"><g class="nohy"><path class="noha nl" fill="#F21B68" d="M5.06 39.00Q5.2 37 7.20 37.00L30.00 37.00Q30 37 30.00 37.00L30.00 47.00Q30 47 30.00 47.00L27.54 56.14Q26.5 60 22.50 60.00L8.60 60.00Q3.6 60 3.95 55.01Z"/><path class="noha np" fill="#F21B68" d="M58.94 39.00Q58.8 37 56.80 37.00L34.00 37.00Q34 37 34.00 37.00L34.00 47.00Q34 47 34.00 47.00L36.46 56.14Q37.5 60 41.50 60.00L55.40 60.00Q60.4 60 60.05 55.01Z"/></g><g class="hlava"><path class="trup" fill="#F21B68" d="M4.27 17.99Q4 11 10.93 10.01L21.54 8.49Q25 8 27.75 10.16L28.85 11.03Q32 13.5 34.93 10.78L36.44 9.38Q39 7 42.48 7.33L53.03 8.34Q60 9 59.74 16.00L58.78 42.00Q58.6 47 53.60 47.00L10.40 47.00Q5.4 47 5.21 42.00Z"/><rect class="deska" x="11.5" y="18.5" width="41" height="26" rx="10" fill="#171522"/><g class="oci"><g class="oko oko-l" clip-path="url(#px-mel-l)"><rect x="17.5" y="23.3" width="13.4" height="13.4" rx="4.556" fill="#FAF6FF"/><g class="zor"><circle cx="24.2" cy="30" r="4.4" fill="#171522"/><circle class="odl" cx="25.695" cy="28.416" r="1.144" fill="#FAF6FF"/></g><rect class="vk" x="17" y="22.8" width="14.4" height="1.30" fill="#171522"/></g><g class="oko oko-p" clip-path="url(#px-mel-p)"><rect x="33.099" y="23.3" width="13.4" height="13.4" rx="4.556" fill="#FAF6FF"/><g class="zor"><circle cx="39.8" cy="30" r="4.4" fill="#171522"/><circle class="odl" cx="41.296" cy="28.416" r="1.144" fill="#FAF6FF"/></g><rect class="vk" x="32.599" y="22.8" width="14.4" height="1.30" fill="#171522"/></g></g><g class="mu" stroke="#FAF6FF" stroke-width="1.9" stroke-linecap="round" fill="none"><path class="u-s" d="M28.6 40q3.4 2.5 6.8 0"/></g></g></g></g>
+</g>
     </svg>
+    </button>
   </div>
   <div class="px-fade" aria-hidden="true"></div>
 </section>
