@@ -30,11 +30,11 @@
 <script src="assets/js/early.js?v=20261110p1"></script>
 <script src="assets/js/main.js?v=20261110p1" defer></script>
 <link rel="stylesheet" href="assets/vendor/lenis-1.3.27.css?v=20261110p1">
-<link rel="stylesheet" href="css/parallax.css?v=20261110komp1">
+<link rel="stylesheet" href="css/parallax.css?v=20261110par7">
 <script src="assets/vendor/gsap-3.15.1.min.js?v=20261110p1" defer></script>
 <script src="assets/vendor/ScrollTrigger-3.15.1.min.js?v=20261110p1" defer></script>
 <script src="assets/vendor/lenis-1.3.27.min.js?v=20261110p1" defer></script>
-<script src="js/parallax.js?v=20261110komp1" defer></script>
+<script src="js/parallax.js?v=20261110par7" defer></script>
 </head>
 <body>
 <a class="skip" href="#obsah">Přeskočit na obsah</a>
@@ -82,26 +82,35 @@
 
 <section class="hero px-hero" aria-labelledby="hero-title" data-parallax-layers>
   <div class="px-sky px-layer" data-parallax-layer="1" aria-hidden="true">
-    <svg class="px-depth" data-depth="10" viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice" focusable="false">
-      <defs><pattern id="px-grid" width="96" height="96" patternUnits="userSpaceOnUse"><path d="M96 0H0V96" fill="none" stroke="currentColor" stroke-width="1"/></pattern></defs>
-      <path class="px-grid-drift" fill="url(#px-grid)" d="M-96-96h1632v1192H-96z"/>
-      <g class="px-light" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="720" cy="610" rx="630" ry="390"/><ellipse cx="720" cy="610" rx="505" ry="312"/></g>
-      <g class="px-stars" fill="currentColor"><path d="m195 180 8 8-8 8-8-8z"/><path d="m1240 280 8 8-8 8-8-8z"/><path d="m840 100 6 6-6 6-6-6z"/></g>
-    </svg>
+    <div class="px-sky-plane px-depth" data-depth="10">
+      <div class="px-grid-drift"></div>
+      <div class="px-light"></div>
+      <div class="px-stars">
+        <span class="px-star"><svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" d="m12 1 11 11-11 11L1 12Z"/></svg></span>
+        <span class="px-star"><svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" d="m12 1 11 11-11 11L1 12Z"/></svg></span>
+        <span class="px-star"><svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" d="m12 1 11 11-11 11L1 12Z"/></svg></span>
+      </div>
+    </div>
   </div>
   <div class="px-terrain px-layer" data-parallax-layer="2" aria-hidden="true">
-    <svg class="px-depth" data-depth="18" viewBox="0 0 1440 1000" preserveAspectRatio="none" focusable="false">
-      <path class="px-ridge-far" d="M-80 680 260 510 720 715 1180 510 1520 680V1000H-80Z"/>
-      <path class="px-ridge" d="M-80 800 260 620 720 815 1180 620 1520 800V1000H-80Z"/>
-      <g class="px-streams" fill="none"><path data-motion-probe="tok-horni" d="m-60 740 320-160 460 205 460-205 320 160"/><path data-motion-probe="tok-dolni" d="M-60 850l320-160 460 205 460-205 320 160"/></g>
-      <g class="px-wires" fill="none" stroke-width="3"><path d="m-60 740 320-160 460 205 460-205 320 160M-60 850l320-160 460 205 460-205 320 160"/></g>
-      <g class="px-nodes"><path d="m247 574 13-7 13 7-13 7zm920 0 13-7 13 7-13 7zM707 779l13-7 13 7-13 7z"/></g>
+    <div class="px-terrain-inner px-depth" data-depth="18">
+    <svg viewBox="0 0 1440 1000" preserveAspectRatio="none" focusable="false">
+      <path class="px-ridge-far" d="M-80 550 260 360 720 600 1180 360 1520 550V1000H-80Z"/>
+      <path class="px-ridge" d="M-80 670 260 450 720 710 1180 450 1520 670V1000H-80Z"/>
+      <g class="px-streams" fill="none"><path data-motion-probe="tok-horni" d="m-60 590 320-190 460 240 460-240 320 190"/><path data-motion-probe="tok-dolni" d="M-60 710l320-190 460 260 460-260 320 190"/></g>
+      <g class="px-wires" fill="none" stroke-width="3"><path d="m-60 590 320-190 460 240 460-240 320 190M-60 710l320-190 460 260 460-260 320 190"/></g>
+      <g class="px-nodes"><path d="m247 400 13-7 13 7-13 7zm920 0 13-7 13 7-13 7zM707 634l13-7 13 7-13 7z"/></g>
     </svg>
+    <span class="px-ridge-glint" data-ridge="far"></span>
+    <span class="px-ridge-glint" data-ridge="near"></span>
+    </div>
   </div>
-  <div class="px-composition">
-  <div class="hero-text px-copy" data-parallax-layer="3">
+  <div class="hero-text px-copy px-layer" data-parallax-layer="3">
+    <div class="px-title-inner px-depth" data-depth="6">
     <h1 id="hero-title"><span>Tým AI agentů</span> <span>pod kontrolou</span></h1>
-    <div class="hero-side">
+    </div>
+  </div>
+    <div class="hero-side px-support">
       <p class="lead">Melaris je pracovní prostor a LLM harness. Napíšeš jedno zadání, Mel rozdělí práci specialistům a ty vidíš, kdo co dělá, co se změnilo a co ještě čeká.</p>
       <div class="hero-actions">
         <a class="btn" href="https://test.melaris.cz">Přihlásit se do testovacího provozu</a>
@@ -109,9 +118,17 @@
       </div>
       <p class="note">Verze 0.2.0. Prototyp ve vývoji, zatím v testovacím provozu.</p>
     </div>
-  </div>
 
-  <div class="px-front" data-parallax-layer="4">
+  <div class="px-front px-layer" data-parallax-layer="4">
+  <div class="px-front-inner px-depth" data-depth="24">
+    <svg class="px-ground" viewBox="0 0 1440 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="px-ground-fill px-ground-wide" d="M-40 610 260 470 720 475 1180 470 1480 610V1100H-40Z"/>
+      <path class="px-ground-fill px-ground-mobile" d="M-40 590 260 430 720 450 1180 430 1480 590V1100H-40Z"/>
+      <path class="px-ground-fold" d="M-40 810 260 690 720 850 1180 690 1480 810V1100H-40Z"/>
+      <g class="px-wires" fill="none" stroke-width="2"><path d="M-40 680 260 550 720 650 1180 550 1480 680M-40 880 260 760 720 920 1180 760 1480 880"/></g>
+      <g class="px-streams" fill="none"><path data-motion-probe="tok-popredi" d="M-40 680 260 550 720 650 1180 550 1480 680"/></g>
+    </svg>
+    <span class="px-ridge-glint" data-ridge="front"></span>
   <div class="px-scene" role="group" aria-label="Mel předává práci agentům Kód, Návrh a Kontrola">
     <svg aria-hidden="true" class="px-terminal" viewBox="0 0 480 240" focusable="false">
       <path class="px-terminal-shadow" d="m0 220 335-20 145 30-335 10Z"/>
@@ -126,20 +143,20 @@
         <rect class="px-cursor" x="34" y="70" width="9" height="19" fill="currentColor"/>
       </g>
     </svg>
-    <svg class="px-workflow" viewBox="0 0 720 720" aria-hidden="true" focusable="false">
-      <ellipse class="px-orbit" cx="390" cy="290" rx="250" ry="210" transform="rotate(-24 390 290)" fill="none"/>
+    <svg class="px-workflow" viewBox="0 0 1440 440" aria-hidden="true" focusable="false">
+      <ellipse class="px-orbit" cx="760" cy="240" rx="540" ry="150" fill="none"/>
       <g class="px-routes" fill="none">
-        <path id="px-route-code" d="M440 290 Q250 80 120 225"/>
-        <path id="px-route-design" d="M440 290 Q650 260 660 100"/>
-        <path id="px-route-check" d="M440 290 Q510 460 660 370"/>
-        <path id="px-return-code" d="M120 225 Q30 340 220 485"/>
-        <path id="px-return-design" d="M660 100 Q720 400 365 485"/>
-        <path id="px-return-check" d="M660 370 Q640 575 430 540"/>
+        <path id="px-route-code" d="M1170 180 Q930 30 650 130"/>
+        <path id="px-route-design" d="M1170 180 Q1140 60 980 95"/>
+        <path id="px-route-check" d="M1170 180 Q1060 350 850 290"/>
+        <path id="px-return-code" d="M650 130 Q480 180 300 240"/>
+        <path id="px-return-design" d="M980 95 Q760 250 400 280"/>
+        <path id="px-return-check" d="M850 290 Q650 420 440 330"/>
       </g>
       <g class="px-agents">
-      <g class="px-agent" data-motion-probe="specialista-kod" transform="translate(120 225)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m-10-8-8 8 8 8m20-16 8 8-8 8M4-13l-8 26"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Kód</text></g></g>
-      <g class="px-agent" data-motion-probe="specialista-navrh" transform="translate(660 100)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m0-17 17 17L0 17-17 0ZM0-17v34m-17-17h34"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Návrh</text></g></g>
-      <g class="px-agent" data-motion-probe="specialista-kontrola" transform="translate(660 370)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m-15 0 10 10 20-22"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Kontrola</text></g></g>
+      <g class="px-agent" data-motion-probe="specialista-kod" transform="translate(650 130)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m-10-8-8 8 8 8m20-16 8 8-8 8M4-13l-8 26"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Kód</text></g></g>
+      <g class="px-agent" data-motion-probe="specialista-navrh" transform="translate(980 95)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m0-17 17 17L0 17-17 0ZM0-17v34m-17-17h34"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Návrh</text></g></g>
+      <g class="px-agent" data-motion-probe="specialista-kontrola" transform="translate(850 290)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m-15 0 10 10 20-22"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Kontrola</text></g></g>
       </g>
       <g class="px-packets"><circle class="px-packet" data-route="px-route-code" r="8"/><circle class="px-packet" data-route="px-route-design" r="8"/><circle class="px-packet" data-route="px-route-check" r="8"/><circle class="px-packet px-result" data-route="px-return-code" r="8"/><circle class="px-packet px-result" data-route="px-return-design" r="8"/><circle class="px-packet px-result" data-route="px-return-check" r="8"/></g>
     </svg>

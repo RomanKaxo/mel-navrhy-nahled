@@ -28,13 +28,17 @@
     if (context) return;
     context = gsap.context(function () {
       var timeline = gsap.timeline({scrollTrigger: {
-        trigger:hero, start:'top top', end:'bottom top', scrub:0,
+        // Nulový scroll začíná pod sticky hlavičkou, nikoli až o její výšku později.
+        trigger:hero, start:0, end:function () { return hero.offsetHeight; }, scrub:0,
         invalidateOnRefresh:true
       }});
       [70, 55, 40, 10].forEach(function (speed, i) {
         timeline.to(hero.querySelector('[data-parallax-layer="' + (i + 1) + '"]'),
-          {yPercent:speed, ease:'none'}, 0);
+          {yPercent:speed, duration:1, ease:'none'}, 0);
       });
+      // Doprovod drží rozestup od titulu a odejde dřív, než jej zakryje popředí.
+      timeline.to(hero.querySelector('.px-support'), {y:function () { return hero.offsetHeight*.4; },duration:1,ease:'none'}, 0);
+      timeline.to(hero.querySelector('.px-support'), {autoAlpha:0,duration:.18,ease:'none'}, 0);
     }, hero);
     // Kotvy ovládá nativní prohlížeč a stávající navigace stránky.
     lenis = new Lenis({autoRaf:false, smoothWheel:true, anchors:false});
@@ -54,6 +58,8 @@
     var shadow = button.querySelector('.px-mel-shadow');
     var finePointer = matchMedia('(hover: hover) and (pointer: fine)');
     var mobile = matchMedia('(max-width:599px)');
+    var compact = matchMedia('(max-width:1023px) and (min-height:501px)');
+    var wide = matchMedia('(min-width:2400px)');
     var scene = null, animations = [], jump, blink, autoTimer, blinkTimer;
     var depths = hero.querySelectorAll('.px-depth');
     var sceneFrame = hero.querySelector('.px-scene');
@@ -124,26 +130,45 @@
     }
     function start() {
       if (scene) return;
+      var compactRoutes = [
+        'M760 180 Q580 15 445 100', 'M760 180 Q860 10 990 80',
+        'M760 180 Q900 220 980 470', 'M445 100 Q390 320 520 430',
+        'M990 80 Q1060 410 680 450', 'M980 470 Q900 560 740 530'
+      ];
+      routes.forEach(function (path, i) {
+        path.setAttribute('d', compact.matches ? compactRoutes[i] : originalRoutes[i]);
+      });
       scene = gsap.context(function () {
         function keep(a) { animations.push(a); return a; }
         keep(gsap.to(body, {y:-.45, rotation:.5, scaleY:1.012, duration:2.8,
           ease:'sine.inOut', repeat:-1, yoyo:true, paused:true}));
-        keep(gsap.to(hero.querySelector('.px-grid-drift'), {x:96,y:96,duration:12,
-          ease:'none',repeat:-1,paused:true}));
-        hero.querySelectorAll('.px-stars path').forEach(function (star, i) {
-          if (mobile.matches && i === 2) return;
+        hero.querySelectorAll('.px-star').forEach(function (star, i) {
+          // Na velmi široké ploše stačí pohyb týmu, paketů a hřebenových světel.
+          if (wide.matches || (mobile.matches && i === 2)) return;
           keep(gsap.to(star, {y:-85-i*6,x:i%2?20:-20,opacity:.3,duration:6,
             ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
         });
-        ['.px-ridge-far','.px-ridge'].forEach(function (selector, i) {
-          keep(gsap.to(hero.querySelector(selector), {y:mobile.matches?-2:-5,
-            scaleY:1.008,duration:7+i*2,ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
-        });
-        keep(gsap.fromTo(hero.querySelector('.px-light'), {opacity:.35},
-          {opacity:.8,scale:1.025,duration:8,ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
-        hero.querySelectorAll('.px-streams path').forEach(function (path) {
-          keep(gsap.to(path,{strokeDashoffset:-960,opacity:.4,duration:12,
-            ease:'none',repeat:-1,paused:true}));
+        // Malé světelné stopy mají vlastní kompozitní plochu. Velké SVG hřebenů zůstává statické.
+        var ridgePaths = {
+          far:[[-60,590],[260,400],[720,640],[1180,400],[1500,590]],
+          near:[[-60,710],[260,520],[720,780],[1180,520],[1500,710]],
+          front:[[-40,680],[260,550],[720,650],[1180,550],[1480,680]]
+        };
+        hero.querySelectorAll('.px-ridge-glint').forEach(function (light, index) {
+          var points = ridgePaths[light.dataset.ridge].map(function (p) {
+            return {x:p[0]/1440*hero.clientWidth-37,y:p[1]/1000*hero.clientHeight-1};
+          });
+          var lengths = points.slice(1).map(function (p, i) {
+            return Math.hypot(p.x-points[i].x,p.y-points[i].y);
+          });
+          var total = lengths.reduce(function (a,b) { return a+b; },0);
+          var flow = keep(gsap.timeline({repeat:-1,paused:true}));
+          flow.set(light,{x:points[0].x,y:points[0].y});
+          points.slice(1).forEach(function (p,i) {
+            flow.set(light,{rotation:Math.atan2(p.y-points[i].y,p.x-points[i].x)*180/Math.PI})
+              .to(light,{x:p.x,y:p.y,duration:12*lengths[i]/total,ease:'none'});
+          });
+          flow.progress(index/3);
         });
         hero.querySelectorAll('.px-agent-float').forEach(function (agent, i) {
           keep(gsap.to(agent,{x:i%2?-8:8,y:i%2?-16:16,duration:3.6+i*.4,ease:'sine.inOut',
@@ -208,16 +233,23 @@
       button.disabled = true;
       hero.dataset.living = 'off';
     }
-    mobile.addEventListener('change',function () { if (scene) { reset(); start(); } });
+    function resizeScene() { if (scene) { reset(); start(); } }
+    mobile.addEventListener('change', resizeScene);
+    compact.addEventListener('change', resizeScene);
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resizeScene, 150);
+    });
     button.addEventListener('click', hop);
     hero.addEventListener('pointermove', function (event) {
-      if (!running || !finePointer.matches || event.pointerType === 'touch') return;
+      if (!running || !finePointer.matches || mobile.matches || event.pointerType === 'touch') return;
       var bounds = hero.getBoundingClientRect();
       var mx = (event.clientX-bounds.left)/bounds.width*2-1;
       var my = (event.clientY-bounds.top)/bounds.height*2-1;
       depths.forEach(function (el) {
         var depth = Number(el.dataset.depth);
-        gsap.set(el,{x:mx*depth,y:my*depth*.55});
+        gsap.set(el,{x:mx*depth,y:my*depth*.25});
       });
       // Celá scéna reaguje společně; vnitřní rozměry a dráhy zůstávají beze změny.
       gsap.set(sceneFrame,{x:mx*8,y:my*4});
