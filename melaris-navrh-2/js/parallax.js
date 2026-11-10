@@ -55,6 +55,43 @@
     var finePointer = matchMedia('(hover: hover) and (pointer: fine)');
     var mobile = matchMedia('(max-width:599px)');
     var scene = null, animations = [], jump, blink, autoTimer, blinkTimer;
+    var depths = hero.querySelectorAll('.px-depth');
+    var lines = hero.querySelectorAll('.px-line');
+    var routes = hero.querySelectorAll('.px-routes path');
+    var originalRoutes = Array.from(routes,function (path) { return path.getAttribute('d'); });
+    var completeLines = Array.from(lines, function (line) { return line.textContent; });
+    var storyTime = 0, celebrated = false, task = 0, cursorMark = '', lookingAtTerminal = false;
+    var cursor = hero.querySelector('.px-cursor');
+    var tasks = ['> Zpřehledni stránku', '> Oprav navigaci', '> Uprav formulář'];
+    function writeStory(t) {
+      storyTime = t;
+      var starts = [0, 2.5, 7.1, 9.6], lengths = [2.1, 1.8, 1.7, .65];
+      var activeLine = 0;
+      lines.forEach(function (line, i) {
+        var count = Math.floor(completeLines[i].length * gsap.utils.clamp(0, 1, (t-starts[i])/lengths[i]));
+        var text = completeLines[i].slice(0,count);
+        if (line.textContent !== text) line.textContent = text;
+        if (t >= starts[i]) activeLine = i;
+      });
+      var current = lines[activeLine];
+      var cursorOpacity = Math.floor(t*2.5)%2 ? .1 : 1;
+      var mark = activeLine+'|'+current.textContent+'|'+cursorOpacity;
+      // Měření textu a zápisy stylů jen při novém znaku nebo bliknutí, ne každý frame.
+      if (mark !== cursorMark) {
+        cursorMark = mark;
+        gsap.set(cursor, {x:current.getComputedTextLength()+3,
+          y:Number(current.getAttribute('y'))-85,opacity:cursorOpacity});
+      }
+      var phase = t < 2.5 ? 'zadani' : t < 7.1 ? 'tym' : t < 9.6 ? 'kontrola' : 'hotovo';
+      if (hero.dataset.story !== phase) hero.dataset.story = phase;
+      if (t >= 10.25 && !celebrated) { celebrated = true; hop(); }
+      if (t < 1) celebrated = false;
+      var look = t >= 9.6 && t < 11.4;
+      if (look !== lookingAtTerminal) {
+        lookingAtTerminal = look;
+        gsap.set(pupils,{x:look?-1.7:0,y:look?.5:0});
+      }
+    }
     var visible = false, running = false;
     function laterJump() {
       autoTimer = gsap.delayedCall(gsap.utils.random(5.5, 9), function () {
@@ -90,11 +127,11 @@
         function keep(a) { animations.push(a); return a; }
         keep(gsap.to(body, {y:-.45, rotation:.5, scaleY:1.012, duration:2.8,
           ease:'sine.inOut', repeat:-1, yoyo:true, paused:true}));
-        keep(gsap.to(hero.querySelector('.px-grid-drift'), {x:96,y:96,duration:42,
+        keep(gsap.to(hero.querySelector('.px-grid-drift'), {x:96,y:96,duration:12,
           ease:'none',repeat:-1,paused:true}));
         hero.querySelectorAll('.px-stars path').forEach(function (star, i) {
           if (mobile.matches && i === 2) return;
-          keep(gsap.to(star, {y:-12-i*3,x:i%2?5:-5,duration:4.8+i*1.3,
+          keep(gsap.to(star, {y:-85-i*6,x:i%2?20:-20,opacity:.3,duration:6,
             ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
         });
         ['.px-ridge-far','.px-ridge'].forEach(function (selector, i) {
@@ -103,6 +140,42 @@
         });
         keep(gsap.fromTo(hero.querySelector('.px-light'), {opacity:.35},
           {opacity:.8,scale:1.025,duration:8,ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
+        hero.querySelectorAll('.px-streams path').forEach(function (path) {
+          keep(gsap.to(path,{strokeDashoffset:-960,opacity:.4,duration:12,
+            ease:'none',repeat:-1,paused:true}));
+        });
+        hero.querySelectorAll('.px-agent-float').forEach(function (agent, i) {
+          keep(gsap.to(agent,{y:i%2?-65:65,duration:6,ease:'sine.inOut',
+            repeat:-1,yoyo:true,paused:true}));
+          keep(gsap.fromTo(agent.querySelector('.px-agent-signal'),{opacity:.25},
+            {opacity:1,duration:6,repeat:-1,yoyo:true,paused:true}));
+        });
+        hero.querySelectorAll('.px-packet').forEach(function (packet,i) {
+          if (mobile.matches && i%3 !== 0) return;
+          var path = hero.querySelector('#'+packet.dataset.route);
+          if (mobile.matches) path.setAttribute('d', i<3 ? 'M720 260 Q1400 300 1160 90' : 'M1160 90 Q850 0 400 140');
+          var length = path.getTotalLength();
+          var agent = hero.querySelectorAll('.px-agent-float')[i%3];
+          var travel = {t:0}, start = i<3 ? 3+i*.45 : 6.3+(i-3)*.45;
+          var route = keep(gsap.timeline({repeat:-1,paused:true}));
+          route.set(packet,{opacity:0},0)
+            .to(travel,{t:1,duration:2.4,ease:'power1.inOut',onUpdate:function () {
+              var point = path.getPointAtLength(travel.t*length);
+              var drift = Number(gsap.getProperty(agent,'y')) * (i<3 ? travel.t : 1-travel.t);
+              gsap.set(packet,{x:point.x,y:point.y+drift});
+            }},start)
+            .to(packet,{opacity:1,duration:.18},start)
+            .to(packet,{opacity:0,duration:.25},start+2.15)
+            .to({}, {duration:.1},11.9);
+        });
+        if (mobile.matches) depths.forEach(function (el,i) {
+          keep(gsap.to(el,{x:i%2?4:-4,y:i%2?-3:3,duration:6,repeat:-1,yoyo:true,
+            ease:'sine.inOut',paused:true}));
+        });
+        var clock = {t:0};
+        keep(gsap.to(clock,{t:12,duration:12,ease:'none',repeat:-1,paused:true,
+          onUpdate:function () { writeStory(clock.t); },
+          onRepeat:function () { task = (task+1)%tasks.length; completeLines[0] = tasks[task]; }}));
         jump = keep(gsap.timeline({paused:true})
           .to(jumpBody,{scaleX:1.09,scaleY:.88,y:0,duration:.18,ease:'power2.in'})
           .to(jumpBody,{scaleX:.94,scaleY:1.09,y:-13,duration:.32,ease:'power2.out'})
@@ -127,20 +200,36 @@
       if (blinkTimer) blinkTimer.kill();
       if (scene) scene.revert();
       gsap.set(pupils,{clearProps:"transform"});
+      gsap.set(depths,{clearProps:'transform'});
+      routes.forEach(function (path,i) { path.setAttribute('d',originalRoutes[i]); });
+      lines.forEach(function (line,i) { line.textContent = completeLines[i]; });
+      storyTime = 0; celebrated = false; cursorMark = ''; lookingAtTerminal = false;
       scene = null; animations = []; running = false;
       button.disabled = true;
       hero.dataset.living = 'off';
     }
+    mobile.addEventListener('change',function () { if (scene) { reset(); start(); } });
     button.addEventListener('click', hop);
     hero.addEventListener('pointermove', function (event) {
       if (!running || !finePointer.matches || event.pointerType === 'touch') return;
+      var bounds = hero.getBoundingClientRect();
+      var mx = (event.clientX-bounds.left)/bounds.width*2-1;
+      var my = (event.clientY-bounds.top)/bounds.height*2-1;
+      depths.forEach(function (el) {
+        var depth = Number(el.dataset.depth);
+        gsap.set(el,{x:mx*depth,y:my*depth*.55});
+      });
+      if (storyTime >= 9.6 && storyTime < 11.4) return;
       var r = button.getBoundingClientRect();
       var x = gsap.utils.clamp(-1.7,1.7,(event.clientX-r.left-r.width/2)/r.width*2);
       var y = gsap.utils.clamp(-1.3,1.3,(event.clientY-r.top-r.height/2)/r.height*2);
       gsap.set(pupils,{x:x,y:y});
     });
     hero.addEventListener('pointerleave', function () {
-      if (scene) gsap.set(pupils,{x:0,y:0});
+      if (scene && running) {
+        gsap.set(pupils,{x:0,y:0});
+        if (!mobile.matches) gsap.set(depths,{x:0,y:0});
+      }
     });
     var view = new IntersectionObserver(function (entries) {
       visible = entries[0].isIntersecting; update();

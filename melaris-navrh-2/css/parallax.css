@@ -2,7 +2,7 @@
 html.lenis { scroll-behavior:auto; }
 .px-hero {position:relative;isolation:isolate;height:calc(100svh - 60px);min-height:840px;max-height:1120px;padding:0;overflow:hidden;overflow:clip;background:var(--bg)}
 .px-layer {position:absolute;inset:0;pointer-events:none}
-.px-layer > svg:not(.px-terminal):not(.px-mel) {width:100%;height:100%;display:block}
+.px-layer > svg:not(.px-terminal):not(.px-mel):not(.px-workflow) {width:100%;height:100%;display:block}
 .px-sky {z-index:0;color:var(--line);opacity:.32}
 .px-stars {color:var(--accent-text)}
 .px-terrain {z-index:1}
@@ -72,4 +72,43 @@ html.lenis { scroll-behavior:auto; }
 @media (max-width:599px) {
   .px-stars path:last-child {display:none}
   .px-light ellipse:last-child {display:none}
+}
+
+.px-hero {--px-success:#69e4ad}
+:root[data-theme=light] .px-hero {--px-success:#14673f}
+@media (prefers-color-scheme:light) { :root:not([data-theme=dark]) .px-hero {--px-success:#14673f} }
+.px-terminal .px-code-ok {fill:var(--px-success)}
+/* Pracovní příběh bydlí pod textem; jediný pohybový čas vlastní GSAP. */
+.px-workflow {position:absolute;left:0;bottom:0;width:100%;height:46%;overflow:visible}
+.px-layer > svg.px-workflow {height:46%}
+.px-streams {stroke:var(--accent-text);stroke-width:3;stroke-dasharray:90 390;opacity:.8}
+.px-routes {stroke:var(--wire);stroke-width:1.5;stroke-dasharray:5 9;opacity:.65}
+.px-agent-plate {fill:var(--surface);stroke:var(--accent-text);stroke-width:2}
+.px-agent-icon {fill:none;stroke:var(--accent-text);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.px-agent text {fill:var(--ink);font-family:Sora,system-ui,sans-serif;font-size:17px;text-anchor:middle}
+.px-agent-signal,.px-result {fill:var(--px-success)}
+.px-packet {fill:var(--accent-text);stroke:var(--surface);stroke-width:3}
+.px-packet.px-result {fill:var(--px-success)}
+.px-hero[data-story=tym] .px-agent-signal {fill:var(--accent-text)}
+.px-cursor,.px-packets {visibility:hidden}
+.px-hero[data-living=running] .px-cursor,.px-hero[data-living=paused] .px-cursor,
+.px-hero[data-living=running] .px-packets,.px-hero[data-living=paused] .px-packets {visibility:visible}
+.px-sky {opacity:.5}
+.px-stars {color:var(--accent-text)}
+.px-terminal .px-code {font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+@media (max-width:999px) and (min-width:600px) {
+ .px-workflow .px-agent-float {scale:1.6 1;transform-origin:0 0}
+ .px-terminal {width:300px;bottom:7%}
+}
+@media (max-width:599px) {
+ .px-layer > svg.px-workflow {left:0;width:100%;height:39%;bottom:0}
+ .px-workflow .px-agent:nth-child(2),.px-workflow .px-agent:nth-child(3),
+ .px-workflow .px-packet:nth-child(2),.px-workflow .px-packet:nth-child(3),
+ .px-workflow .px-packet:nth-child(5),.px-workflow .px-packet:nth-child(6) {display:none}
+ .px-workflow .px-routes {display:none}
+ .px-workflow .px-agent:first-child {transform:translate(1160px,90px) scale(2.4,1)}
+ .px-agent text {font-size:22px}
+ .px-terminal .px-line {font-size:24px}
+ .px-terminal {width:205px;left:9px;bottom:155px}
+ .px-sky {opacity:.35}
 }
