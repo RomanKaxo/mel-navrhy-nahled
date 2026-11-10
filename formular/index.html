@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Zadání pro Mel</title>
+</head>
+<body>
+<h1>Zadání pro Mel</h1>
+<p>Čistý HTML formulář bez CSS a bez skriptů. Nikam se neodesílá.</p>
+<form onsubmit="return false">
+<p><label>Název úlohy<br><input type="text" name="nazev"></label></p>
+<p><label>Projekt<br><input type="text" name="projekt"></label></p>
+<p><label>Zadání<br><textarea name="zadani" rows="6" cols="50"></textarea></label></p>
+<p><label>Odkaz na repozitář<br><input type="url" name="repo"></label></p>
+<p><label>Termín<br><input type="date" name="termin"></label></p>
+<p><label>Počet kroků nejvýš<br><input type="number" name="kroky" min="1" value="20"></label></p>
+<p><label>Režim<br>
+<select name="rezim">
+<option>Mel</option>
+<option>Mel + tým</option>
+<option>Jen číst</option>
+</select></label></p>
+<fieldset>
+<legend>Priorita</legend>
+<label><input type="radio" name="priorita" value="nizka"> nízká</label>
+<label><input type="radio" name="priorita" value="normalni" checked> normální</label>
+<label><input type="radio" name="priorita" value="vysoka"> vysoká</label>
+</fieldset>
+<p><label><input type="checkbox" name="schvalit"> Před zápisem souborů se zeptat</label></p>
+<p><label><input type="checkbox" name="oznamit"> Dát vědět po dokončení</label></p>
+<p><button type="submit">Odeslat</button> <button type="reset">Vymazat</button></p>
+</form>
+</body>
+</html>
