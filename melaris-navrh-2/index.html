@@ -30,11 +30,11 @@
 <script src="assets/js/early.js?v=20261110p1"></script>
 <script src="assets/js/main.js?v=20261110p1" defer></script>
 <link rel="stylesheet" href="assets/vendor/lenis-1.3.27.css?v=20261110p1">
-<link rel="stylesheet" href="css/parallax.css?v=20261110z1">
+<link rel="stylesheet" href="css/parallax.css?v=20261110komp1">
 <script src="assets/vendor/gsap-3.15.1.min.js?v=20261110p1" defer></script>
 <script src="assets/vendor/ScrollTrigger-3.15.1.min.js?v=20261110p1" defer></script>
 <script src="assets/vendor/lenis-1.3.27.min.js?v=20261110p1" defer></script>
-<script src="js/parallax.js?v=20261110z1" defer></script>
+<script src="js/parallax.js?v=20261110komp1" defer></script>
 </head>
 <body>
 <a class="skip" href="#obsah">Přeskočit na obsah</a>
@@ -98,6 +98,7 @@
       <g class="px-nodes"><path d="m247 574 13-7 13 7-13 7zm920 0 13-7 13 7-13 7zM707 779l13-7 13 7-13 7z"/></g>
     </svg>
   </div>
+  <div class="px-composition">
   <div class="hero-text px-copy" data-parallax-layer="3">
     <h1 id="hero-title"><span>Tým AI agentů</span> <span>pod kontrolou</span></h1>
     <div class="hero-side">
@@ -110,9 +111,9 @@
     </div>
   </div>
 
-  <div class="px-front px-layer" data-parallax-layer="4">
-    <svg aria-hidden="true" class="px-ground px-depth" data-depth="22" viewBox="0 0 1440 1000" preserveAspectRatio="none" focusable="false"><path d="M0 890 240 790 720 960 1200 790 1440 890V1000H0Z"/></svg>
-    <svg aria-hidden="true" class="px-terminal px-depth" data-depth="26" viewBox="0 0 480 240" focusable="false">
+  <div class="px-front" data-parallax-layer="4">
+  <div class="px-scene" role="group" aria-label="Mel předává práci agentům Kód, Návrh a Kontrola">
+    <svg aria-hidden="true" class="px-terminal" viewBox="0 0 480 240" focusable="false">
       <path class="px-terminal-shadow" d="m0 220 335-20 145 30-335 10Z"/>
       <rect class="px-window" x="12" y="10" width="440" height="202" rx="14"/>
       <path class="px-window-line" d="M12 52h440"/>
@@ -125,30 +126,33 @@
         <rect class="px-cursor" x="34" y="70" width="9" height="19" fill="currentColor"/>
       </g>
     </svg>
-    <svg class="px-workflow px-depth" data-depth="24" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <svg class="px-workflow" viewBox="0 0 720 720" aria-hidden="true" focusable="false">
+      <ellipse class="px-orbit" cx="390" cy="290" rx="250" ry="210" transform="rotate(-24 390 290)" fill="none"/>
       <g class="px-routes" fill="none">
-        <path id="px-route-code" d="M1140 220 Q1010 40 650 130"/>
-        <path id="px-route-design" d="M1140 220 Q1160 15 900 135"/>
-        <path id="px-route-check" d="M1140 220 Q1100 330 810 220"/>
-        <path id="px-return-code" d="M650 130 Q510 100 250 290"/>
-        <path id="px-return-design" d="M900 135 Q590 10 250 290"/>
-        <path id="px-return-check" d="M810 220 Q600 340 250 290"/>
+        <path id="px-route-code" d="M440 290 Q250 80 120 225"/>
+        <path id="px-route-design" d="M440 290 Q650 260 660 100"/>
+        <path id="px-route-check" d="M440 290 Q510 460 660 370"/>
+        <path id="px-return-code" d="M120 225 Q30 340 220 485"/>
+        <path id="px-return-design" d="M660 100 Q720 400 365 485"/>
+        <path id="px-return-check" d="M660 370 Q640 575 430 540"/>
       </g>
       <g class="px-agents">
-      <g class="px-agent" data-motion-probe="specialista-kod" transform="translate(650 130)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m-10-8-8 8 8 8m20-16 8 8-8 8M4-13l-8 26"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Kód</text></g></g>
-      <g class="px-agent" data-motion-probe="specialista-navrh" transform="translate(900 135)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m0-17 17 17L0 17-17 0ZM0-17v34m-17-17h34"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Návrh</text></g></g>
-      <g class="px-agent" data-motion-probe="specialista-kontrola" transform="translate(810 220)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m-15 0 10 10 20-22"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Kontrola</text></g></g>
+      <g class="px-agent" data-motion-probe="specialista-kod" transform="translate(120 225)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m-10-8-8 8 8 8m20-16 8 8-8 8M4-13l-8 26"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Kód</text></g></g>
+      <g class="px-agent" data-motion-probe="specialista-navrh" transform="translate(660 100)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m0-17 17 17L0 17-17 0ZM0-17v34m-17-17h34"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Návrh</text></g></g>
+      <g class="px-agent" data-motion-probe="specialista-kontrola" transform="translate(660 370)"><g class="px-agent-float"><path class="px-agent-plate" d="m0-36 32 18v36L0 36-32 18v-36Z"/><path class="px-agent-icon" d="m-15 0 10 10 20-22"/><circle class="px-agent-signal" cx="26" cy="-24" r="6"/><text y="62">Kontrola</text></g></g>
       </g>
       <g class="px-packets"><circle class="px-packet" data-route="px-route-code" r="8"/><circle class="px-packet" data-route="px-route-design" r="8"/><circle class="px-packet" data-route="px-route-check" r="8"/><circle class="px-packet px-result" data-route="px-return-code" r="8"/><circle class="px-packet px-result" data-route="px-return-design" r="8"/><circle class="px-packet px-result" data-route="px-return-check" r="8"/></g>
     </svg>
     <button class="px-mel" type="button" aria-label="Mel — poskočit" disabled>
-    <svg class="px-mel-art px-depth" data-depth="32" viewBox="0 0 320 340" aria-hidden="true" focusable="false">
+    <svg class="px-mel-art" viewBox="0 0 320 340" aria-hidden="true" focusable="false">
       <ellipse class="px-mel-shadow" cx="160" cy="310" rx="110" ry="16"/>
       <!-- Oficiální Mel: Elaris-Harness/public/mascot-avatar.svg, beze změny tvaru a barev. -->
       <g class="px-mascot" transform="translate(16 30) scale(4.5)"><defs><clipPath id="px-mel-l"><rect x="17.5" y="23.3" width="13.4" height="13.4" rx="4.556"/></clipPath><clipPath id="px-mel-p"><rect x="33.099" y="23.3" width="13.4" height="13.4" rx="4.556"/></clipPath></defs><g class="px-jump"><g class="koren"><g class="nohy"><path class="noha nl" fill="#F21B68" d="M5.06 39.00Q5.2 37 7.20 37.00L30.00 37.00Q30 37 30.00 37.00L30.00 47.00Q30 47 30.00 47.00L27.54 56.14Q26.5 60 22.50 60.00L8.60 60.00Q3.6 60 3.95 55.01Z"/><path class="noha np" fill="#F21B68" d="M58.94 39.00Q58.8 37 56.80 37.00L34.00 37.00Q34 37 34.00 37.00L34.00 47.00Q34 47 34.00 47.00L36.46 56.14Q37.5 60 41.50 60.00L55.40 60.00Q60.4 60 60.05 55.01Z"/></g><g class="hlava"><path class="trup" fill="#F21B68" d="M4.27 17.99Q4 11 10.93 10.01L21.54 8.49Q25 8 27.75 10.16L28.85 11.03Q32 13.5 34.93 10.78L36.44 9.38Q39 7 42.48 7.33L53.03 8.34Q60 9 59.74 16.00L58.78 42.00Q58.6 47 53.60 47.00L10.40 47.00Q5.4 47 5.21 42.00Z"/><rect class="deska" x="11.5" y="18.5" width="41" height="26" rx="10" fill="#171522"/><g class="oci"><g class="oko oko-l" clip-path="url(#px-mel-l)"><rect x="17.5" y="23.3" width="13.4" height="13.4" rx="4.556" fill="#FAF6FF"/><g class="zor"><circle cx="24.2" cy="30" r="4.4" fill="#171522"/><circle class="odl" cx="25.695" cy="28.416" r="1.144" fill="#FAF6FF"/></g><rect class="vk" x="17" y="22.8" width="14.4" height="1.30" fill="#171522"/></g><g class="oko oko-p" clip-path="url(#px-mel-p)"><rect x="33.099" y="23.3" width="13.4" height="13.4" rx="4.556" fill="#FAF6FF"/><g class="zor"><circle cx="39.8" cy="30" r="4.4" fill="#171522"/><circle class="odl" cx="41.296" cy="28.416" r="1.144" fill="#FAF6FF"/></g><rect class="vk" x="32.599" y="22.8" width="14.4" height="1.30" fill="#171522"/></g></g><g class="mu" stroke="#FAF6FF" stroke-width="1.9" stroke-linecap="round" fill="none"><path class="u-s" d="M28.6 40q3.4 2.5 6.8 0"/></g></g></g></g>
 </g>
     </svg>
     </button>
+  </div>
+  </div>
   </div>
   <div class="px-fade" aria-hidden="true"></div>
 </section>

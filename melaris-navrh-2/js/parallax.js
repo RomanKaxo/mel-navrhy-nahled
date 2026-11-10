@@ -56,6 +56,7 @@
     var mobile = matchMedia('(max-width:599px)');
     var scene = null, animations = [], jump, blink, autoTimer, blinkTimer;
     var depths = hero.querySelectorAll('.px-depth');
+    var sceneFrame = hero.querySelector('.px-scene');
     var lines = hero.querySelectorAll('.px-line');
     var routes = hero.querySelectorAll('.px-routes path');
     var originalRoutes = Array.from(routes,function (path) { return path.getAttribute('d'); });
@@ -145,18 +146,16 @@
             ease:'none',repeat:-1,paused:true}));
         });
         hero.querySelectorAll('.px-agent-float').forEach(function (agent, i) {
-          keep(gsap.to(agent,{y:i%2?-65:65,duration:6,ease:'sine.inOut',
+          keep(gsap.to(agent,{x:i%2?-8:8,y:i%2?-16:16,duration:3.6+i*.4,ease:'sine.inOut',
             repeat:-1,yoyo:true,paused:true}));
           keep(gsap.fromTo(agent.querySelector('.px-agent-signal'),{opacity:.25},
             {opacity:1,duration:6,repeat:-1,yoyo:true,paused:true}));
         });
         hero.querySelectorAll('.px-packet').forEach(function (packet,i) {
-          if (mobile.matches && i%3 !== 0) return;
           var path = hero.querySelector('#'+packet.dataset.route);
-          if (mobile.matches) path.setAttribute('d', i<3 ? 'M720 260 Q1400 300 1160 90' : 'M1160 90 Q850 0 400 140');
           var length = path.getTotalLength();
           var agent = hero.querySelectorAll('.px-agent-float')[i%3];
-          var travel = {t:0}, start = i<3 ? 3+i*.45 : 6.3+(i-3)*.45;
+          var travel = {t:0}, start = i*.4;
           var route = keep(gsap.timeline({repeat:-1,paused:true}));
           route.set(packet,{opacity:0},0)
             .to(travel,{t:1,duration:2.4,ease:'power1.inOut',onUpdate:function () {
@@ -166,7 +165,7 @@
             }},start)
             .to(packet,{opacity:1,duration:.18},start)
             .to(packet,{opacity:0,duration:.25},start+2.15)
-            .to({}, {duration:.1},11.9);
+            .to({}, {duration:.1},4.9);
         });
         if (mobile.matches) depths.forEach(function (el,i) {
           keep(gsap.to(el,{x:i%2?4:-4,y:i%2?-3:3,duration:6,repeat:-1,yoyo:true,
@@ -187,7 +186,7 @@
           .to(shadow,{scaleX:1.08,scaleY:1,opacity:.33,duration:.39,ease:'power2.in'},.60)
           .to(shadow,{scaleX:1,opacity:.3,duration:.25},.99));
         blink = keep(gsap.timeline({paused:true})
-          .to(eyes,{scaleY:.06,duration:.085,ease:'power2.in'})
+          .to(eyes,{scaleY:.06,transformOrigin:'50% 50%',duration:.085,ease:'power2.in'})
           .to(eyes,{scaleY:1,duration:.12,ease:'power2.out'}));
         // Čekají na první klik / časovač; update nesmí spustit skok při načtení.
         jump.progress(1); blink.progress(1);
@@ -201,6 +200,7 @@
       if (scene) scene.revert();
       gsap.set(pupils,{clearProps:"transform"});
       gsap.set(depths,{clearProps:'transform'});
+      gsap.set(sceneFrame,{clearProps:'transform'});
       routes.forEach(function (path,i) { path.setAttribute('d',originalRoutes[i]); });
       lines.forEach(function (line,i) { line.textContent = completeLines[i]; });
       storyTime = 0; celebrated = false; cursorMark = ''; lookingAtTerminal = false;
@@ -219,6 +219,8 @@
         var depth = Number(el.dataset.depth);
         gsap.set(el,{x:mx*depth,y:my*depth*.55});
       });
+      // Celá scéna reaguje společně; vnitřní rozměry a dráhy zůstávají beze změny.
+      gsap.set(sceneFrame,{x:mx*8,y:my*4});
       if (storyTime >= 9.6 && storyTime < 11.4) return;
       var r = button.getBoundingClientRect();
       var x = gsap.utils.clamp(-1.7,1.7,(event.clientX-r.left-r.width/2)/r.width*2);
@@ -229,6 +231,7 @@
       if (scene && running) {
         gsap.set(pupils,{x:0,y:0});
         if (!mobile.matches) gsap.set(depths,{x:0,y:0});
+        gsap.set(sceneFrame,{x:0,y:0});
       }
     });
     var view = new IntersectionObserver(function (entries) {
