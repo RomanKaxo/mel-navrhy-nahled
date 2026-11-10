@@ -1,0 +1,66 @@
+/* Druhý návrh: vlastní prostorová kresba harnessu. Barvy dědí site.css. */
+html.lenis { scroll-behavior:auto; }
+.px-hero {position:relative;isolation:isolate;height:calc(100svh - 60px);min-height:840px;max-height:1120px;padding:0;overflow:hidden;overflow:clip;background:var(--bg)}
+.px-layer {position:absolute;inset:0;pointer-events:none}
+.px-layer > svg:not(.px-terminal):not(.px-mel) {width:100%;height:100%;display:block}
+.px-sky {z-index:0;color:var(--line);opacity:.32}
+.px-stars {color:var(--accent-text)}
+.px-terrain {z-index:1}
+.px-ridge-far {fill:var(--cmp-m)}
+.px-ridge {fill:var(--surface)}
+.px-wires {stroke:var(--wire);opacity:.45}
+.px-nodes {fill:var(--accent)}
+.px-hero .px-copy {position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:24px;padding:clamp(60px,7svh,90px) 24px 0;text-align:center;pointer-events:none}
+.px-copy h1 {font-size:clamp(3.5rem,6.1vw,5.5rem);line-height:1.06;max-width:100%;text-wrap:balance}
+.px-copy .hero-side {width:min(100%,630px)}
+.px-copy .lead {max-width:none;font-size:1.125rem;line-height:1.6;text-wrap:pretty}
+.px-copy .hero-actions {justify-content:center;margin-top:24px;pointer-events:auto}
+.px-copy .note {font-size:.8125rem;max-width:100%;margin-top:16px}
+.px-copy a {pointer-events:auto}
+.px-front {z-index:3}
+.px-ground {fill:var(--cmp-m)}
+.px-terminal {position:absolute;width:clamp(330px,25vw,380px);left:max(24px,calc(50% - 660px));bottom:8%;transform:rotate(-5deg);overflow:visible}
+.px-terminal-shadow,.px-mel-shadow {fill:var(--line);opacity:.3}
+.px-window {fill:var(--surface);stroke:var(--wire);stroke-width:2}
+.px-window-line {stroke:var(--line);stroke-width:2}
+.px-window-dots {fill:var(--wire)}
+.px-code {font-family:Sora,system-ui,sans-serif;fill:var(--muted);color:var(--accent-text)}
+.px-code-ok {fill:var(--ok);font-weight:700}
+.px-mel {position:absolute;width:clamp(240px,25vw,340px);right:max(24px,calc(50% - 620px));bottom:3%;overflow:visible}
+.px-mel-body {fill:var(--accent)}
+.px-mel-side {fill:var(--accent-text)}
+.px-mel-highlight {fill:#FF92BA}
+.px-mel-face {fill:#171522}
+.px-mel-eyes {fill:#FAF6FF}
+.px-smile {fill:none;stroke:#FAF6FF;stroke-width:5;stroke-linecap:round}
+.px-fade {position:absolute;z-index:4;inset:auto 0 0;height:7%;background:linear-gradient(to bottom,transparent,var(--bg));pointer-events:none}
+/* Systémové vypnutí pohybu i tlačítko webu vrátí statickou kompozici. */
+:root[data-motion=off] .px-hero [data-parallax-layer] {transform:none!important}
+@media (max-width:999px) {
+  .px-hero {height:calc(105svh - 60px);min-height:840px}
+  .px-hero .px-copy {padding-top:70px}
+  .px-copy h1 {font-size:clamp(3rem,7.8vw,5rem)}
+  .px-terminal {left:24px;width:350px;bottom:9%}
+  .px-mel {right:24px;width:260px;bottom:3%}
+}
+@media (max-width:599px) {
+  .px-hero {height:calc(100svh - 60px);min-height:760px;max-height:none}
+  .px-hero .px-copy {padding:40px 24px 0;gap:22px}
+  .px-copy h1 {font-size:clamp(2rem,9.1vw,3rem);letter-spacing:-.045em}
+  .px-copy .lead {font-size:1rem;line-height:1.5}
+  .px-copy .hero-actions {gap:6px;margin-top:20px;flex-direction:column}
+  .px-copy .btn {width:100%;max-width:350px;font-size:.875rem;min-height:48px;padding:10px 12px}
+  .px-copy .note {font-size:.75rem;margin-top:10px}
+  .px-mel {width:180px;right:calc(50% - 90px);bottom:1%}
+  .px-terminal {display:block;width:170px;left:8px;bottom:150px}
+  .px-sky {opacity:.2}
+  .px-fade {height:5%}
+  /* Bez JS je původní navigace trvale rozbalená a zabírá 150 px. */
+  :root:not(.js) .px-hero {height:calc(100svh - 150px);min-height:690px}
+}
+@media (prefers-reduced-motion:reduce) {
+  .px-hero [data-parallax-layer] {transform:none!important}
+}
+
+/* Text i CTA jsou viditelné hned; jediný pohyb hero určuje scroll. */
+.px-hero .hero-text>h1,.px-hero .hero-side>* {animation:none}

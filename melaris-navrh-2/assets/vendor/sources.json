@@ -1,0 +1,39 @@
+[
+  {
+    "file": "gsap-3.15.1.min.js",
+    "source": "https://registry.npmjs.org/gsap/-/gsap-3.15.1.tgz",
+    "member": "package/dist/gsap.min.js",
+    "sha256": "3d1bea374ab1b703cc5c4105358eec63c4465efdc573931dc116e34a0a190c1b"
+  },
+  {
+    "file": "ScrollTrigger-3.15.1.min.js",
+    "source": "https://registry.npmjs.org/gsap/-/gsap-3.15.1.tgz",
+    "member": "package/dist/ScrollTrigger.min.js",
+    "sha256": "b5bb360661f478f0ff6ffa11500d8ce5e2b6aaf6f7288237cdca3aac9548035a"
+  },
+  {
+    "file": "lenis-1.3.27.min.js",
+    "source": "https://registry.npmjs.org/lenis/-/lenis-1.3.27.tgz",
+    "member": "package/dist/lenis.min.js",
+    "sha256": "80f53e77f1c13e379fc246d2b5e299188e20bcb2b2fe7ebb13e8e8c7563a6da7"
+  },
+  {
+    "file": "lenis-1.3.27.css",
+    "source": "https://registry.npmjs.org/lenis/-/lenis-1.3.27.tgz",
+    "member": "package/dist/lenis.css",
+    "sha256": "2f668ae84a668327f246faf8a770383a2bf69196d214290fbc4d5548910606c5"
+  },
+  {
+    "file": "LENIS-LICENSE.txt",
+    "source": "https://registry.npmjs.org/lenis/-/lenis-1.3.27.tgz",
+    "member": "package/LICENSE",
+    "sha256": "7d1896b31f2eed9f286b05faca067c4e35b2f109ae7c4ed5105220e2d2820228"
+  },
+  {
+    "file": "GSAP-LICENSE.txt",
+    "source": "https://gsap.com/standard-license/",
+    "sha256": "b0f03c9bdd6b26570b1fae388943e2e439a23f04b3eb65c1d4f5873e29c24994",
+    "original_response_sha256": "945a0f3f1fc9e7511c2e5d047b1acb9594b04b51708180e3a20460accf89e1f9",
+    "note": "License text and FAQ extracted from official HTML; navigation and scripts omitted."
+  }
+]
