@@ -193,7 +193,7 @@
             .to({}, {duration:.1},4.9);
         });
         if (mobile.matches) depths.forEach(function (el,i) {
-          keep(gsap.to(el,{x:i%2?4:-4,y:i%2?-3:3,duration:6,repeat:-1,yoyo:true,
+          keep(gsap.to(el,{y:i%2?-3:3,duration:6,repeat:-1,yoyo:true,
             ease:'sine.inOut',paused:true}));
         });
         var clock = {t:0};
@@ -245,14 +245,12 @@
     hero.addEventListener('pointermove', function (event) {
       if (!running || !finePointer.matches || mobile.matches || event.pointerType === 'touch') return;
       var bounds = hero.getBoundingClientRect();
-      var mx = (event.clientX-bounds.left)/bounds.width*2-1;
       var my = (event.clientY-bounds.top)/bounds.height*2-1;
+      // Vrstvy reagují na myš jen svisle; do stran se scéna nehýbe.
       depths.forEach(function (el) {
-        var depth = Number(el.dataset.depth);
-        gsap.set(el,{x:mx*depth,y:my*depth*.25});
+        gsap.set(el,{y:my*Number(el.dataset.depth)*.25});
       });
-      // Celá scéna reaguje společně; vnitřní rozměry a dráhy zůstávají beze změny.
-      gsap.set(sceneFrame,{x:mx*8,y:my*4});
+      gsap.set(sceneFrame,{y:my*4});
       if (storyTime >= 9.6 && storyTime < 11.4) return;
       var r = button.getBoundingClientRect();
       var x = gsap.utils.clamp(-1.7,1.7,(event.clientX-r.left-r.width/2)/r.width*2);
