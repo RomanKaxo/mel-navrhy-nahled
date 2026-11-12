@@ -41,12 +41,12 @@ html.lenis {scroll-behavior:auto}
 .px-ground-fold {fill:var(--surface)}
 /* Jeden poměr a jedna soustava souřadnic pro Mel, terminál, agenty i jejich dráhy. */
 .px-scene {position:absolute;container-type:inline-size;width:min(94%,calc((100svh - var(--px-header))*.38*1440/440),1440px);aspect-ratio:1440/440;bottom:5%;left:0;right:0;margin-inline:auto;isolation:isolate}
-/* Osady specialistů na hřebenech: vrstva 2, takže je při scrollu přejede popředí.
+/* Osady specialistů po stranách Mela uvnitř jeho scény; souřadnice v % scény, zem osady (80 % výšky) = Melova chodidla.
    Postavy z aplikace Melaris (agent-portraits.js), jen klidová póza; počátky transformací drží GSAP. */
-.px-village {position:absolute;inset:0}
-.px-hamlet {position:absolute;width:clamp(240px,24vw,420px);height:auto;aspect-ratio:300/140;overflow:visible;translate:-50% -100%}
-.px-hamlet[data-hamlet=dilna] {left:13%;top:49%}
-.px-hamlet[data-hamlet=hlidka] {left:87%;top:49%}
+.px-village {position:absolute;inset:0;z-index:0}
+.px-hamlet {position:absolute;bottom:10%;width:32%;height:auto;aspect-ratio:300/140;overflow:visible;translate:-50% 0}
+.px-hamlet[data-hamlet=dilna] {left:55.5%}
+.px-hamlet[data-hamlet=hlidka] {left:114%;width:34%}
 .px-mound {fill:color-mix(in srgb,var(--surface) 80%,var(--accent) 20%)}
 .px-house-wall {fill:var(--surface);stroke:var(--wire);stroke-width:2}
 .px-house-roof {fill:var(--accent);stroke:var(--accent);stroke-width:2;stroke-linejoin:round}
@@ -100,16 +100,16 @@ html.lenis {scroll-behavior:auto}
  .px-hero {--title-size:min(8.5vw,9svh,88px);--title-top:max(7%,calc(35% - var(--title-size)*2.08));min-height:600px}
  .px-support {top:calc(var(--title-top) + var(--title-size)*2.08 + 22px)}
  .px-scene {width:min(94%,calc((100svh - var(--px-header))*.38*1440/440))}
- /* Vrcholy hřebenů jsou tu pod textem; osady sestoupí ke krajům svahu. */
- .px-hamlet {width:clamp(150px,21vw,220px)}
- .px-hamlet[data-hamlet=dilna] {left:11%;top:52.5%}
- .px-hamlet[data-hamlet=hlidka] {left:89%;top:52.5%}
 }
 /* Vysoký tablet skládá stejný celek na výšku, aby krajina nezůstala prázdná. */
 @media (max-width:1023px) and (min-height:501px) {
  .px-scene {width:min(94%,calc((100svh - var(--px-header))*.38*720/600));aspect-ratio:720/600;bottom:5%}
  .px-terminal {width:65%;left:1%;top:59%}
  .px-mel {width:42%;left:33%;top:1%}
+ /* Na výšku stojí osady po obou stranách Mela, nad terminálem. */
+ .px-hamlet,.px-hamlet[data-hamlet=hlidka] {width:56%;bottom:44%}
+ .px-hamlet[data-hamlet=dilna] {left:-1%}
+ .px-hamlet[data-hamlet=hlidka] {left:103%}
 }
 @media (max-width:899px) {
  .px-hero {--px-header:56px}
@@ -132,8 +132,9 @@ html.lenis {scroll-behavior:auto}
  .px-terminal {width:65%;left:1%;top:59%}
  .px-mel {width:42%;left:33%;top:1%}
  :root:not(.js) .px-scene {width:min(92%,calc((100svh - var(--px-header))*.38*720/600))}
- /* Na telefonu je nad popředím jen text a tlačítko; osady se nevejdou. */
- .px-village {display:none}
+ .px-hamlet,.px-hamlet[data-hamlet=hlidka] {width:56%;bottom:44%}
+ .px-hamlet[data-hamlet=dilna] {left:-1%}
+ .px-hamlet[data-hamlet=hlidka] {left:103%}
  .px-ground-wide {display:none}
  .px-ground-mobile {display:block}
  :root:not(.js) .px-hero {--title-top:5%}
@@ -151,6 +152,8 @@ html.lenis {scroll-behavior:auto}
  .px-support .text-link {min-height:36px;font-size:12px}
  .px-hero .px-support .note {font-size:10px;margin-top:4px}
  .px-scene {bottom:10px;width:min(90%,calc((100svh - var(--px-header))*.27*1440/440))}
+ /* Naležato je popředí nízké; osady by zakryly text. */
+ .px-village {display:none}
  :root:not(.js) .px-hero {--title-top:4%}
  :root:not(.js) .px-support {top:calc(4% + 42px)}
  :root:not(.js) .px-scene {width:min(90%,calc((100svh - var(--px-header))*.36*1440/440))}

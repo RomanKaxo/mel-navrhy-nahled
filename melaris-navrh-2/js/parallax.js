@@ -218,7 +218,7 @@
             .to(eyesOf,{scaleY:.06,transformOrigin:'50% 50%',duration:.085,ease:'power2.in'})
             .to(eyesOf,{scaleY:1,duration:.12,ease:'power2.out'}));
         });
-        if (!mobile.matches) village(keep);
+        village(keep);
         if (mobile.matches) depths.forEach(function (el,i) {
           keep(gsap.to(el,{y:i%2?-3:3,duration:6,repeat:-1,yoyo:true,
             ease:'sine.inOut',paused:true}));
