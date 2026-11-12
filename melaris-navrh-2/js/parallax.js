@@ -55,6 +55,7 @@
     var body = button.querySelector('.koren');
     var eyes = button.querySelector('.oci');
     var pupils = button.querySelectorAll('.zor');
+    var crewPupils = hero.querySelectorAll('.px-crew .zor');
     var shadow = button.querySelector('.px-mel-shadow');
     var finePointer = matchMedia('(hover: hover) and (pointer: fine)');
     var mobile = matchMedia('(max-width:599px)');
@@ -176,6 +177,19 @@
           keep(gsap.fromTo(agent.querySelector('.px-agent-signal'),{opacity:.25},
             {opacity:1,duration:6,repeat:-1,yoyo:true,paused:true}));
         });
+        // Specialisté dýchají a mrkají jako Mel, každý ve vlastním rytmu.
+        hero.querySelectorAll('.px-crew').forEach(function (member, i) {
+          keep(gsap.to(member.querySelector('.px-crew-body'),{scaleY:1.03,transformOrigin:'50% 100%',
+            duration:2.4+i*.3,ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
+          var eyesOf = member.querySelectorAll('.oci');
+          keep(gsap.timeline({repeat:-1,repeatDelay:3+i*1.3,delay:.6+i*.7,paused:true})
+            .to(eyesOf,{scaleY:.06,transformOrigin:'50% 50%',duration:.085,ease:'power2.in'})
+            .to(eyesOf,{scaleY:1,duration:.12,ease:'power2.out'}));
+        });
+        // Hlídky na hřebenech se pohupují; posun s vrstvou dělá parallax.
+        hero.querySelectorAll('.px-ridge-agent').forEach(function (agent,i) {
+          keep(gsap.to(agent,{y:-6,duration:2+i*.5,ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
+        });
         hero.querySelectorAll('.px-packet').forEach(function (packet,i) {
           var path = hero.querySelector('#'+packet.dataset.route);
           var length = path.getTotalLength();
@@ -223,7 +237,7 @@
       if (autoTimer) autoTimer.kill();
       if (blinkTimer) blinkTimer.kill();
       if (scene) scene.revert();
-      gsap.set(pupils,{clearProps:"transform"});
+      gsap.set([pupils,crewPupils],{clearProps:"transform"});
       gsap.set(depths,{clearProps:'transform'});
       gsap.set(sceneFrame,{clearProps:'transform'});
       routes.forEach(function (path,i) { path.setAttribute('d',originalRoutes[i]); });
@@ -251,6 +265,8 @@
         gsap.set(el,{y:my*Number(el.dataset.depth)*.25});
       });
       gsap.set(sceneFrame,{y:my*4});
+      // Specialisté se dívají za kurzorem, oči se pohnou jen uvnitř obličeje.
+      gsap.set(crewPupils,{x:((event.clientX-bounds.left)/bounds.width*2-1)*1.6,y:my*1.2});
       if (storyTime >= 9.6 && storyTime < 11.4) return;
       var r = button.getBoundingClientRect();
       var x = gsap.utils.clamp(-1.7,1.7,(event.clientX-r.left-r.width/2)/r.width*2);
@@ -259,7 +275,7 @@
     });
     hero.addEventListener('pointerleave', function () {
       if (scene && running) {
-        gsap.set(pupils,{x:0,y:0});
+        gsap.set([pupils,crewPupils],{x:0,y:0});
         if (!mobile.matches) gsap.set(depths,{x:0,y:0});
         gsap.set(sceneFrame,{x:0,y:0});
       }
