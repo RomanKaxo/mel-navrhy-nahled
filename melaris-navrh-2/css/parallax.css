@@ -46,38 +46,19 @@ html.lenis {scroll-behavior:auto}
    Stanoviště má chodidla v bodě (0,0) viewBoxu, tj. 93 % výšky; left/top je místo, kde stojí. */
 .px-crowd {position:absolute;inset:0;pointer-events:none}
 .px-crowd-front {z-index:0}
-.px-st {position:absolute;width:clamp(76px,7.6vw,130px);height:auto;aspect-ratio:100/86;overflow:visible;translate:-50% -93%}
-.px-crowd-front .px-st {width:12%}
-/* Obloha (vrstva 1) */
-.px-st[data-st=echo] {left:9%;top:22%}
-.px-st[data-st=skop] {left:91%;top:20%}
-/* Hřebeny (vrstva 2): body na hřebenech mimo sloupec s textem */
-.px-st[data-st=saga] {left:5.5%;top:46%}
-.px-st[data-st=vela] {left:11%;top:41.7%}
+.px-st {position:absolute;width:clamp(96px,9.6vw,160px);height:auto;aspect-ratio:100/86;overflow:visible;translate:-50% -93%}
+.px-crowd-front .px-st {width:15%;top:90%}
+/* Hřebeny (vrstva 2): vrcholy a svahy mimo sloupec s textem */
+.px-st[data-st=vela] {left:9.5%;top:43%}
 .px-st[data-st=kairo] {left:18.06%;top:36%}
-.px-st[data-st=tavi] {left:23.5%;top:40.1%}
-.px-st[data-st=ori] {left:15.4%;top:47.6%}
-.px-st[data-st=nexo] {left:76.5%;top:40.1%}
 .px-st[data-st=juno] {left:81.94%;top:36%}
-.px-st[data-st=ember] {left:84.6%;top:47.6%}
-.px-st[data-st=atlas] {left:89%;top:41.7%}
-.px-st[data-st=onyx] {left:94.5%;top:46%}
+.px-st[data-st=nexo] {left:90.5%;top:43%}
 /* Popředí (scéna s Melem, % scény): chodidla na Melově zemi */
-.px-crowd-front .px-st {top:90%}
-.px-st[data-st=memo] {left:-30%}
-.px-st[data-st=runa] {left:-17%}
-.px-st[data-st=nodi] {left:-4%}
-.px-st[data-st=arko] {left:42%}
-.px-st[data-st=iris] {left:52.5%}
-.px-st[data-st=kern] {left:63%}
-.px-st[data-st=tester] {left:100%}
-.px-st[data-st=flux] {left:112%}
-/* Druhá řada za první, po stranách scény */
-.px-crowd-front :is([data-st=lumi],[data-st=sora],[data-st=brio],[data-st=alva]) {top:56%}
-.px-st[data-st=lumi] {left:-23%}
-.px-st[data-st=sora] {left:-9%}
-.px-st[data-st=brio] {left:106%}
-.px-st[data-st=alva] {left:120%}
+.px-st[data-st=iris] {left:-14%}
+.px-st[data-st=arko] {left:46%}
+.px-st[data-st=kern] {left:60%}
+.px-st[data-st=memo] {left:105%}
+.px-st[data-st=brio] {left:121%}
 .px-p-line,.px-p-ink,.px-p-plank,.px-p-ok,.px-p-wavearc {fill:none;stroke-linecap:round;stroke-linejoin:round}
 .px-p-line {stroke:var(--wire);stroke-width:2.5}
 .px-p-ink {stroke:var(--muted);stroke-width:2}
@@ -184,14 +165,12 @@ html.lenis {scroll-behavior:auto}
 }
 /* Na výšku je pod textem jen scéna s Melem: hřebeny zakrývá popředí, část týmu stojí kolem Mela. */
 @media (max-width:1023px) and (min-height:501px) {
- .px-crowd-back,.px-crowd-front :is([data-st=memo],[data-st=runa],[data-st=lumi],[data-st=nodi],[data-st=flux],[data-st=alva]) {display:none}
- .px-crowd-front .px-st {width:19%;top:50%}
- .px-st[data-st=iris] {left:5%}
- .px-st[data-st=arko] {left:21%}
- .px-st[data-st=kern] {left:84%}
- .px-st[data-st=sora] {left:99%}
- .px-st[data-st=tester] {left:79%;top:84%}
- .px-st[data-st=brio] {left:95%;top:84%}
+ .px-crowd-back,.px-crowd-front [data-st=memo] {display:none}
+ .px-crowd-front .px-st {width:22%;top:50%}
+ .px-st[data-st=iris] {left:3%}
+ .px-st[data-st=arko] {left:20%}
+ .px-st[data-st=kern] {left:86%}
+ .px-st[data-st=brio] {left:84%;top:86%}
 }@media (prefers-reduced-motion:reduce) {
  .px-hero [data-parallax-layer] {transform:none!important;will-change:auto}
 }
