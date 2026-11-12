@@ -65,8 +65,6 @@
     var depths = hero.querySelectorAll('.px-depth');
     var sceneFrame = hero.querySelector('.px-scene');
     var lines = hero.querySelectorAll('.px-line');
-    var routes = hero.querySelectorAll('.px-routes path');
-    var originalRoutes = Array.from(routes,function (path) { return path.getAttribute('d'); });
     var completeLines = Array.from(lines, function (line) { return line.textContent; });
     var storyTime = 0, celebrated = false, task = 0, cursorMark = '', lookingAtTerminal = false;
     var cursor = hero.querySelector('.px-cursor');
@@ -129,16 +127,56 @@
         if (blinkTimer) blinkTimer.kill();
       }
     }
+    // Osady na hřebenech: Arko staví dům, Iris natírá, Kern obchází, Vela se rozhlíží, Onyx hlídá.
+    function village(keep) {
+      var q = function (s) { return hero.querySelector(s); };
+      var qa = function (s) { return hero.querySelectorAll(s); };
+      qa('.px-smoke circle').forEach(function (puff, i) {
+        keep(gsap.fromTo(puff,{y:0,x:0,scale:.6,opacity:.55,transformOrigin:'50% 50%'},
+          {y:-26,x:6,scale:1.6,opacity:0,duration:3,ease:'sine.out',repeat:-1,delay:i,paused:true}));
+      });
+      qa('.px-window-light').forEach(function (light, i) {
+        keep(gsap.to(light,{opacity:.25,duration:.4,repeat:-1,yoyo:true,repeatDelay:2.6+i*1.4,paused:true}));
+      });
+      var paint = q('.px-paint'), brush = q('.px-brush');
+      var coat = keep(gsap.timeline({repeat:-1,paused:true}));
+      ['#C45FA0','#7F5CD6','#396ED6','#1E9E8A'].forEach(function (color) {
+        coat.set(paint,{fill:color,scaleY:0,transformOrigin:'50% 100%'})
+          .to(paint,{scaleY:1,duration:2.4,ease:'none'})
+          .fromTo(brush,{y:10},{y:-14,duration:.6,ease:'sine.inOut',repeat:3,yoyo:true},'<')
+          .to({},{duration:.8});
+      });
+      keep(gsap.to(q('[data-act=paint]'),{rotation:4,transformOrigin:'50% 100%',duration:.6,
+        ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
+      // Tři série úderů, po každé přibude prkno; hotovou střechu označí vlajka.
+      var hammer = q('.px-hammer'), planks = qa('.px-plank'), flag = q('.px-flag');
+      var arko = q('[data-who=arko] .px-who-act');
+      var build = keep(gsap.timeline({repeat:-1,paused:true}));
+      build.set(planks,{opacity:0,y:-18}).set(flag,{opacity:1,scaleY:0,transformOrigin:'50% 100%'});
+      planks.forEach(function (plank) {
+        build.to(hammer,{rotation:-50,svgOrigin:'186 92',duration:.16,ease:'power2.out',repeat:5,yoyo:true})
+          .to(arko,{y:-3,duration:.16,ease:'sine.inOut',repeat:5,yoyo:true},'<')
+          .to(plank,{opacity:1,y:0,duration:.35,ease:'back.out(2)'});
+      });
+      build.to(flag,{scaleY:1,duration:.4,ease:'back.out(3)'})
+        .to(arko,{y:-8,duration:.2,ease:'power2.out',repeat:1,yoyo:true})
+        .to({},{duration:1.6})
+        .to([planks,flag],{opacity:0,duration:.4});
+      var kern = q('[data-act=walk]');
+      keep(gsap.timeline({repeat:-1,paused:true})
+        .set(kern,{scaleX:1,transformOrigin:'50% 100%'})
+        .to(kern,{x:40,duration:3.2,ease:'sine.inOut'})
+        .to(kern,{scaleX:-1,duration:.15}).to({},{duration:.6})
+        .to(kern,{x:0,duration:3.2,ease:'sine.inOut'})
+        .to(kern,{scaleX:1,duration:.15}).to({},{duration:.6}));
+      keep(gsap.to(q('[data-who=kern] .px-crew'),{y:-4,duration:.2,ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
+      keep(gsap.fromTo(q('[data-act=look]'),{rotation:-8},{rotation:8,transformOrigin:'50% 100%',
+        duration:1.8,ease:'sine.inOut',repeat:-1,yoyo:true,repeatDelay:.8,paused:true}));
+      keep(gsap.to(q('[data-act=guard]'),{rotation:3,transformOrigin:'50% 100%',duration:2.2,
+        ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
+    }
     function start() {
       if (scene) return;
-      var compactRoutes = [
-        'M760 180 Q580 15 445 100', 'M760 180 Q860 10 990 80',
-        'M760 180 Q900 220 980 470', 'M445 100 Q390 320 520 430',
-        'M990 80 Q1060 410 680 450', 'M980 470 Q900 560 740 530'
-      ];
-      routes.forEach(function (path, i) {
-        path.setAttribute('d', compact.matches ? compactRoutes[i] : originalRoutes[i]);
-      });
       scene = gsap.context(function () {
         function keep(a) { animations.push(a); return a; }
         keep(gsap.to(body, {y:-.45, rotation:.5, scaleY:1.012, duration:2.8,
@@ -171,12 +209,6 @@
           });
           flow.progress(index/3);
         });
-        hero.querySelectorAll('.px-agent-float').forEach(function (agent, i) {
-          keep(gsap.to(agent,{x:i%2?-8:8,y:i%2?-16:16,duration:3.6+i*.4,ease:'sine.inOut',
-            repeat:-1,yoyo:true,paused:true}));
-          keep(gsap.fromTo(agent.querySelector('.px-agent-signal'),{opacity:.25},
-            {opacity:1,duration:6,repeat:-1,yoyo:true,paused:true}));
-        });
         // Specialisté dýchají a mrkají jako Mel, každý ve vlastním rytmu.
         hero.querySelectorAll('.px-crew').forEach(function (member, i) {
           keep(gsap.to(member.querySelector('.px-crew-body'),{scaleY:1.03,transformOrigin:'50% 100%',
@@ -186,26 +218,7 @@
             .to(eyesOf,{scaleY:.06,transformOrigin:'50% 50%',duration:.085,ease:'power2.in'})
             .to(eyesOf,{scaleY:1,duration:.12,ease:'power2.out'}));
         });
-        // Hlídky na hřebenech se pohupují; posun s vrstvou dělá parallax.
-        hero.querySelectorAll('.px-ridge-agent').forEach(function (agent,i) {
-          keep(gsap.to(agent,{y:-6,duration:2+i*.5,ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
-        });
-        hero.querySelectorAll('.px-packet').forEach(function (packet,i) {
-          var path = hero.querySelector('#'+packet.dataset.route);
-          var length = path.getTotalLength();
-          var agent = hero.querySelectorAll('.px-agent-float')[i%3];
-          var travel = {t:0}, start = i*.4;
-          var route = keep(gsap.timeline({repeat:-1,paused:true}));
-          route.set(packet,{opacity:0},0)
-            .to(travel,{t:1,duration:2.4,ease:'power1.inOut',onUpdate:function () {
-              var point = path.getPointAtLength(travel.t*length);
-              var drift = Number(gsap.getProperty(agent,'y')) * (i<3 ? travel.t : 1-travel.t);
-              gsap.set(packet,{x:point.x,y:point.y+drift});
-            }},start)
-            .to(packet,{opacity:1,duration:.18},start)
-            .to(packet,{opacity:0,duration:.25},start+2.15)
-            .to({}, {duration:.1},4.9);
-        });
+        if (!mobile.matches) village(keep);
         if (mobile.matches) depths.forEach(function (el,i) {
           keep(gsap.to(el,{y:i%2?-3:3,duration:6,repeat:-1,yoyo:true,
             ease:'sine.inOut',paused:true}));
@@ -240,7 +253,6 @@
       gsap.set([pupils,crewPupils],{clearProps:"transform"});
       gsap.set(depths,{clearProps:'transform'});
       gsap.set(sceneFrame,{clearProps:'transform'});
-      routes.forEach(function (path,i) { path.setAttribute('d',originalRoutes[i]); });
       lines.forEach(function (line,i) { line.textContent = completeLines[i]; });
       storyTime = 0; celebrated = false; cursorMark = ''; lookingAtTerminal = false;
       scene = null; animations = []; running = false;

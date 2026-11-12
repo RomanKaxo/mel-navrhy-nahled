@@ -41,21 +41,31 @@ html.lenis {scroll-behavior:auto}
 .px-ground-fold {fill:var(--surface)}
 /* Jeden poměr a jedna soustava souřadnic pro Mel, terminál, agenty i jejich dráhy. */
 .px-scene {position:absolute;container-type:inline-size;width:min(94%,calc((100svh - var(--px-header))*.38*1440/440),1440px);aspect-ratio:1440/440;bottom:5%;left:0;right:0;margin-inline:auto;isolation:isolate}
-.px-workflow {position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:0}
-.px-orbit {stroke:var(--wire);stroke-width:1.5;opacity:.3}
-.px-routes {stroke:var(--wire);stroke-width:1.5;stroke-dasharray:5 9;opacity:.65}
-.px-agent-shadow {fill:var(--line);opacity:.3}
-.px-agent text {fill:var(--ink);font-family:Sora,system-ui,sans-serif;font-size:20px;font-weight:700;text-anchor:middle}
-.px-agent .px-agent-role {fill:var(--muted);font-size:15px;font-weight:400}
-/* Specialisté z aplikace Melaris (agent-portraits.js), jen klidová póza; počátky transformací drží GSAP. */
-.px-ridge-crew {position:absolute;inset:0}
-.px-ridge-agent {position:absolute;width:clamp(34px,3.6vw,58px);height:auto;aspect-ratio:1;overflow:visible;translate:-50% -94%}
-.px-ridge-agent[data-crew-ridge=vela] {left:18.06%;top:40%}
-.px-ridge-agent[data-crew-ridge=onyx] {left:81.94%;top:40%}
-.px-agent-signal,.px-result {fill:var(--ok)}
-.px-packet {fill:var(--accent-text);stroke:var(--surface);stroke-width:3}
-.px-packet.px-result {fill:var(--ok)}
-.px-hero[data-story=tym] .px-agent-signal {fill:var(--accent-text)}
+/* Osady specialistů na hřebenech: vrstva 2, takže je při scrollu přejede popředí.
+   Postavy z aplikace Melaris (agent-portraits.js), jen klidová póza; počátky transformací drží GSAP. */
+.px-village {position:absolute;inset:0}
+.px-hamlet {position:absolute;width:clamp(240px,24vw,420px);height:auto;aspect-ratio:300/140;overflow:visible;translate:-50% -100%}
+.px-hamlet[data-hamlet=dilna] {left:13%;top:49%}
+.px-hamlet[data-hamlet=hlidka] {left:87%;top:49%}
+.px-mound {fill:color-mix(in srgb,var(--surface) 80%,var(--accent) 20%)}
+.px-house-wall {fill:var(--surface);stroke:var(--wire);stroke-width:2}
+.px-house-roof {fill:var(--accent);stroke:var(--accent);stroke-width:2;stroke-linejoin:round}
+.px-house-door {fill:var(--bg);stroke:var(--wire);stroke-width:1.5}
+.px-house-mark {fill:#1E7F57;stroke:var(--surface);stroke-width:1.5}
+.px-chimney {fill:var(--wire)}
+.px-smoke {fill:var(--muted)}
+.px-smoke circle {opacity:0}
+.px-window-light {fill:var(--accent-text);opacity:.85}
+.px-paint {fill:#C45FA0}
+.px-brush,.px-hammer path {fill:none;stroke:var(--muted);stroke-width:2.5;stroke-linecap:round}
+.px-hammer rect {fill:var(--wire)}
+.px-frame,.px-tower-legs,.px-flag-pole {fill:none;stroke:var(--wire);stroke-width:3;stroke-linecap:round}
+.px-plank {fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round}
+.px-flag-cloth {fill:var(--accent-text)}
+.px-tower-deck {fill:var(--wire)}
+/* Bez běžící scény je dům hotový a nic není rozpracované napůl. */
+.px-hero:not([data-living=running]):not([data-living=paused]) .px-brush,
+.px-hero:not([data-living=running]):not([data-living=paused]) .px-hammer {visibility:hidden}
 .px-terminal {position:absolute;z-index:2;width:32%;left:7%;top:30%;transform:rotate(-4deg);overflow:visible}
 .px-terminal-shadow,.px-mel-shadow {fill:var(--line);opacity:.3}
 .px-window {fill:var(--surface);stroke:var(--wire);stroke-width:2}
@@ -73,9 +83,8 @@ html.lenis {scroll-behavior:auto}
 .px-mel-shadow {transform-origin:160px 310px}
 .px-ridge,.px-ridge-far {transform-origin:720px 1000px}
 .px-light {transform-origin:50% 50%}
-.px-cursor,.px-packets {visibility:hidden}
-.px-hero[data-living=running] .px-cursor,.px-hero[data-living=paused] .px-cursor,
-.px-hero[data-living=running] .px-packets,.px-hero[data-living=paused] .px-packets {visibility:visible}
+.px-cursor {visibility:hidden}
+.px-hero[data-living=running] .px-cursor,.px-hero[data-living=paused] .px-cursor {visibility:visible}
 
 .px-hero + .why {padding-top:clamp(48px,6vw,96px)}
 .px-fade {position:absolute;z-index:4;inset:auto 0 0;height:5%;background:linear-gradient(to bottom,transparent,var(--bg));pointer-events:none}
@@ -91,18 +100,14 @@ html.lenis {scroll-behavior:auto}
  .px-hero {--title-size:min(8.5vw,9svh,88px);--title-top:max(7%,calc(35% - var(--title-size)*2.08));min-height:600px}
  .px-support {top:calc(var(--title-top) + var(--title-size)*2.08 + 22px)}
  .px-scene {width:min(94%,calc((100svh - var(--px-header))*.38*1440/440))}
- /* Vrcholy hřebenů jsou tu pod textem; hlídky sestoupí ke krajům svahu. */
- .px-ridge-agent[data-crew-ridge=vela] {left:6%;top:52%}
- .px-ridge-agent[data-crew-ridge=onyx] {left:94%;top:52%}
+ /* Vrcholy hřebenů jsou tu pod textem; osady sestoupí ke krajům svahu. */
+ .px-hamlet {width:clamp(150px,21vw,220px)}
+ .px-hamlet[data-hamlet=dilna] {left:11%;top:52.5%}
+ .px-hamlet[data-hamlet=hlidka] {left:89%;top:52.5%}
 }
 /* Vysoký tablet skládá stejný celek na výšku, aby krajina nezůstala prázdná. */
 @media (max-width:1023px) and (min-height:501px) {
  .px-scene {width:min(94%,calc((100svh - var(--px-header))*.38*720/600));aspect-ratio:720/600;bottom:5%}
- .px-workflow {width:200%;max-width:none;left:-50%;height:73.333333%}
- .px-agent:nth-child(1) {transform:translate(445px,100px)}
- .px-agent:nth-child(2) {transform:translate(990px,80px)}
- .px-agent:nth-child(3) {transform:translate(980px,470px)}
- .px-orbit {display:none}
  .px-terminal {width:65%;left:1%;top:59%}
  .px-mel {width:42%;left:33%;top:1%}
 }
@@ -124,16 +129,11 @@ html.lenis {scroll-behavior:auto}
  .px-support .text-link {flex:none;width:88px;justify-content:center;font-size:12px;min-height:44px;text-align:center;line-height:1.4}
  .px-hero .px-support .note {font-size:11px;line-height:1.5;margin:6px auto 0;max-width:30em}
  .px-scene {width:min(94%,calc((100svh - var(--px-header))*.30*720/600));aspect-ratio:720/600;bottom:5%}
- .px-workflow {width:200%;max-width:none;left:-50%;height:73.333333%}
- .px-agent:nth-child(1) {transform:translate(445px,100px)}
- .px-agent:nth-child(2) {transform:translate(990px,80px)}
- .px-agent:nth-child(3) {transform:translate(980px,470px)}
- .px-orbit {display:none}
  .px-terminal {width:65%;left:1%;top:59%}
  .px-mel {width:42%;left:33%;top:1%}
  :root:not(.js) .px-scene {width:min(92%,calc((100svh - var(--px-header))*.38*720/600))}
- /* Na telefonu je nad popředím jen text a tlačítko; tým ukazuje scéna s Melem. */
- .px-ridge-crew {display:none}
+ /* Na telefonu je nad popředím jen text a tlačítko; osady se nevejdou. */
+ .px-village {display:none}
  .px-ground-wide {display:none}
  .px-ground-mobile {display:block}
  :root:not(.js) .px-hero {--title-top:5%}
