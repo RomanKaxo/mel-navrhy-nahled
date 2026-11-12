@@ -148,26 +148,11 @@
       keep(gsap.fromTo(s.one('flag'),{scaleX:1},{scaleX:.75,skewY:-6,transformOrigin:'0% 50%',duration:.5,
         ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
       sway(s.who,3,1);
-      // Saga plánuje strategii: zkoumá obzor dalekohledem.
-      s = at('saga');
-      keep(gsap.fromTo(s.one('scope'),{rotation:-12},{rotation:10,svgOrigin:'36 -26',duration:2.4,
-        ease:'sine.inOut',repeat:-1,yoyo:true,repeatDelay:.8,paused:true}));
       // Vela hledá: rozhlíží se a občas něco najde.
       s = at('vela');
       sway(s.who,7,1.6);
       loop({repeatDelay:2.2}).fromTo(s.one('found'),{scale:0,opacity:0,transformOrigin:'50% 50%'},
         {scale:1.2,opacity:1,rotation:90,duration:.4,ease:'back.out(3)'}).to(s.one('found'),{opacity:0,duration:.5},'+=.6');
-      // Tavi hlídá termíny: otáčí kalendář.
-      s = at('tavi');
-      var day = s.one('day'), dayNumber = 12;
-      loop({repeatDelay:1.6}).fromTo(s.one('page'),{scaleY:1,opacity:1},{scaleY:0,transformOrigin:'50% 0%',duration:.45,ease:'power2.in',
-        onComplete:function () { dayNumber = dayNumber > 26 ? 12 : dayNumber+1; day.textContent = dayNumber; }})
-        .set(s.one('page'),{opacity:0});
-      // Ori zapichuje špendlíky do mapy.
-      s = at('ori');
-      loop({repeatDelay:1.4}).fromTo(s.one('pin'),{y:-26,opacity:0},{y:0,opacity:1,duration:.45,ease:'bounce.out'})
-        .fromTo(s.one('ripple'),{scale:.4,opacity:.8,transformOrigin:'50% 50%'},{scale:1.6,opacity:0,duration:.7},'-=.15')
-        .to(s.one('pin'),{opacity:0,duration:.3},'+=1');
       // Nexo ladí techniku: točí ozubenými koly.
       s = at('nexo');
       keep(gsap.to(s.one('gear'),{rotation:360,svgOrigin:'30 -14',duration:4,ease:'none',repeat:-1,paused:true}));
@@ -183,61 +168,12 @@
         .to(rocket,{y:-110,duration:1.4,ease:'power2.in'})
         .to(rocket,{y:0,duration:1.8,ease:'power2.out'},'+=.6')
         .to(flame,{opacity:0,duration:.25});
-      // Ember řeší incidenty: hasí ohníček.
-      s = at('ember');
-      var fire = s.one('fire'), drops = s.one('drops');
-      keep(gsap.to(fire,{scaleY:1.15,scaleX:.9,transformOrigin:'50% 100%',duration:.18,repeat:-1,yoyo:true,paused:true}));
-      loop({repeatDelay:.8})
-        .set(drops,{opacity:0}).set(fire,{opacity:1}).fromTo(fire,{scale:.4},{scale:1,transformOrigin:'50% 100%',duration:.6})
-        .to({},{duration:1.4})
-        .fromTo(drops,{opacity:1,x:0,y:0},{x:10,y:14,duration:.5,repeat:3})
-        .to(fire,{scale:0,transformOrigin:'50% 100%',duration:1.2},'<')
-        .set(drops,{opacity:0});
-      sway(s.who,4,.4);
-      // Atlas skládá mapu webu: uzly se rozsvítí odshora dolů.
-      s = at('atlas');
-      loop({repeatDelay:1.2}).fromTo(s.all('node'),{scale:0,transformOrigin:'50% 50%'},{scale:1,duration:.3,ease:'back.out(3)',stagger:.25})
-        .fromTo(s.one('branches'),{opacity:0},{opacity:1,duration:.4},'<.2')
-        .to(s.all('node'),{opacity:.3,duration:.4},'+=1.4').set(s.all('node'),{opacity:1});
-      // Onyx hlídá bezpečnost: radar kolem něj.
-      s = at('onyx');
-      s.all('pulse').forEach(function (ring, i) {
-        keep(gsap.fromTo(ring,{scale:.5,opacity:.7,transformOrigin:'50% 50%'},{scale:1.3,opacity:0,duration:2.4,
-          ease:'sine.out',repeat:-1,delay:i*1.2,paused:true}));
-      });
-      sway(s.who,2,2.2);
-      // Echo a Skop jsou na obloze: jiskry a satelit kolem zeměkoule.
-      s = at('echo');
-      keep(gsap.to(s.who,{y:-6,duration:2.2,ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
-      s.all('spark').forEach(function (spark, i) {
-        keep(gsap.fromTo(spark,{scale:.2,opacity:.2,transformOrigin:'50% 50%'},{scale:1.1,opacity:1,rotation:45,duration:.9,
-          ease:'sine.inOut',repeat:-1,yoyo:true,delay:i*.45,paused:true}));
-      });
-      s = at('skop');
-      var sat = s.one('sat'), orbit = {a:0};
-      keep(gsap.to(orbit,{a:Math.PI*2,duration:4.5,ease:'none',repeat:-1,paused:true,onUpdate:function () {
-        gsap.set(sat,{x:34*Math.cos(orbit.a)-34,y:10*Math.sin(orbit.a),opacity:Math.sin(orbit.a) < -.3 ? .35 : 1});
-      }}));
-      keep(gsap.to(s.who,{y:-5,duration:2.6,ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
       // Memo zakládá vzpomínky do šuplíku.
       s = at('memo');
       loop({repeatDelay:1}).to(s.one('drawer'),{x:8,duration:.35,ease:'power2.out'})
         .fromTo(s.one('card'),{y:-6,opacity:0},{y:16,opacity:1,duration:.5,ease:'power1.in'})
         .to(s.one('card'),{opacity:0,duration:.1})
         .to(s.one('drawer'),{x:0,duration:.3,ease:'power2.in'});
-      // Runa píše texty: řádky přibývají.
-      s = at('runa');
-      loop({repeatDelay:1.2}).fromTo(s.all('line'),{scaleX:0,transformOrigin:'0% 50%'},{scaleX:1,duration:.5,stagger:.6,ease:'none'})
-        .to(s.all('line'),{opacity:0,duration:.3},'+=1').set(s.all('line'),{opacity:1,scaleX:0});
-      sway(s.who,3,.5);
-      // Lumi tvoří obsah: stránky se skládají na sebe.
-      s = at('lumi');
-      loop({repeatDelay:.8}).fromTo(s.all('sheet'),{y:-14,opacity:0},{y:0,opacity:1,duration:.35,stagger:.5,ease:'back.out(2)'})
-        .to(s.all('sheet'),{opacity:0,duration:.3},'+=1.4');
-      // Nodi staví strukturovaná data: kostky do závorek.
-      s = at('nodi');
-      loop({repeatDelay:.8}).fromTo(s.all('block'),{y:-18,opacity:0},{y:0,opacity:1,duration:.4,stagger:.45,ease:'bounce.out'})
-        .to(s.all('block'),{opacity:0,duration:.3},'+=1.4');
       // Arko staví: kladivo a prkna střechy.
       s = at('arko');
       var planks = s.all('plank'), hammer = s.one('hammer');
@@ -257,30 +193,10 @@
       s = at('kern');
       loop({repeatDelay:1}).fromTo(s.all('check'),{scale:0,opacity:0,transformOrigin:'50% 50%'},{scale:1,opacity:1,duration:.3,stagger:.55,ease:'back.out(3)'})
         .to(s.all('check'),{opacity:0,duration:.3},'+=1.2');
-      // Sora míří na cíl: šipka do terče.
-      s = at('sora');
-      loop({repeatDelay:1.6}).set(s.one('dart'),{opacity:1,x:0})
-        .to(s.one('dart'),{x:12,duration:.35,ease:'power2.in'})
-        .to(s.one('target'),{rotation:8,svgOrigin:'38 -13',duration:.08,repeat:3,yoyo:true})
-        .to(s.one('dart'),{opacity:0,duration:.3},'+=.8');
-      // Tester testuje: bublinky ve zkumavce a zelená kontrolka.
-      s = at('tester');
-      s.all('bubble').forEach(function (bubble, i) {
-        keep(gsap.fromTo(bubble,{y:0,opacity:0},{y:-20,opacity:1,duration:1.2,ease:'sine.out',repeat:-1,delay:i*.4,paused:true}));
-      });
-      keep(gsap.fromTo(s.one('lamp'),{opacity:.25},{opacity:1,duration:.5,repeat:-1,yoyo:true,repeatDelay:.9,paused:true}));
-      // Flux zrychluje web: sprintuje na místě a blýská.
-      s = at('flux');
-      keep(gsap.to(s.who,{y:-3,duration:.12,ease:'sine.inOut',repeat:-1,yoyo:true,paused:true}));
-      keep(gsap.fromTo(s.one('speed'),{x:6,opacity:.9},{x:-8,opacity:.1,duration:.45,ease:'none',repeat:-1,paused:true}));
-      loop({repeatDelay:1.4}).fromTo(s.one('zap'),{opacity:0,scale:.6,transformOrigin:'50% 50%'},{opacity:1,scale:1.15,duration:.12,repeat:3,yoyo:true});
       // Brio dělá marketing: volá do megafonu.
       s = at('brio');
       keep(gsap.fromTo(s.all('wave'),{opacity:0,x:-4},{opacity:1,x:4,duration:.6,stagger:.2,repeat:-1,yoyo:true,ease:'sine.inOut',paused:true}));
       sway(s.who,-4,.6);
-      // Alva hlídá přístupnost: zvětšuje písmo.
-      s = at('alva');
-      keep(gsap.fromTo(s.one('aa'),{scale:.8,transformOrigin:'50% 50%'},{scale:1.25,duration:.9,ease:'sine.inOut',repeat:-1,yoyo:true,repeatDelay:.4,paused:true}));
     }
     function start() {
       if (scene) return;
